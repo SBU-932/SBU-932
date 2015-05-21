@@ -9,7 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 public class GameWin extends JFrame {
 
-	private JPanel contentPane;
+	private GamePanel contentPane;
 
 	public GameWin() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -19,6 +19,10 @@ public class GameWin extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		setVisible(true);
+		
+		while(true){
+			contentPane.draw();
+		}
 	}
 
 }
