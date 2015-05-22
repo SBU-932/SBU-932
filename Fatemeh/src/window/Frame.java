@@ -12,21 +12,6 @@ public class Frame extends JFrame {
 	private JPanel contentPane;
 
 	/**
-	 * Launch the application.
-	 */
-	public void main() {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Frame frame = new Frame();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
 	public Frame() {
