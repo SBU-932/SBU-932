@@ -3,11 +3,13 @@ package window;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
 import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
 import javax.swing.InputMap;
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
@@ -33,8 +35,58 @@ public class GamePanel extends JPanel {
 	 */
 	public GamePanel() {
 		settupInputs();
-
 		settupBufferedImage();
+		settupGUI();
+	}
+
+	/*
+	 * Adds Restart, Quit, Score
+	 */
+	private void settupGUI() {
+		// TODO
+		setLayout(null);
+
+		JButton jRestart = new JButton("Restart");
+		jRestart.setLocation(800, 0);
+		jRestart.setSize(200, 100);
+		jRestart.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				restart();
+			}
+
+		});
+		add(jRestart);
+
+		JButton jQuit = new JButton("Quit");
+		jQuit.setLocation(800, 500);
+		jQuit.setSize(200, 100);
+		jQuit.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				quit();
+
+			}
+
+		});
+		add(jQuit);
+	}
+
+	/*
+	 * OnPressQuit
+	 */
+	protected void quit() {
+		System.exit(0);
+	}
+
+	/*
+	 * OnPressRestart
+	 */
+	protected void restart() {
+		//TODO: go back to menu
+		System.out.println("Debug: restart");
 	}
 
 	/*
@@ -56,7 +108,7 @@ public class GamePanel extends JPanel {
 		setFocusable(true);
 		requestFocusInWindow();
 
-		//This is in charge of pressed keys, sets their is_down to true
+		// This is in charge of pressed keys, sets their is_down to true
 		AbstractAction press = new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
@@ -75,7 +127,7 @@ public class GamePanel extends JPanel {
 			}
 		};
 
-		//This is in charge of released buttons, sets their is_down to false
+		// This is in charge of released buttons, sets their is_down to false
 		AbstractAction release = new AbstractAction() {
 
 			@Override
@@ -94,8 +146,7 @@ public class GamePanel extends JPanel {
 			}
 		};
 
-		
-		//BEGIN: set up listeners for keys
+		// BEGIN: set up listeners for keys
 		im.put(KeyStroke.getKeyStroke("released D"), "rr");
 		am.put("rr", release);
 
@@ -113,7 +164,7 @@ public class GamePanel extends JPanel {
 
 		im.put(KeyStroke.getKeyStroke("pressed A"), "l");
 		am.put("l", press);
-		//END: set up listerners for keys
+		// END: set up listerners for keys
 	}
 
 	/*
