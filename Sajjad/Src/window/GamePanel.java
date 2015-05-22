@@ -14,10 +14,9 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
-public class GamePanel extends JPanel {
+import engine.Assets;
 
-	private BufferedImage bufferedImage; // Game is drawn here
-	private Graphics g2; // The graphic for drawing on game
+public class GamePanel extends JPanel {
 
 	private InputMap im = getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW); // Looks
 																			// for
@@ -26,17 +25,21 @@ public class GamePanel extends JPanel {
 	private ActionMap am = getActionMap(); // Performs actions based on the
 											// inputs
 
-	private int picW = 800, picH = 600; // Setting up game boundaries
-
-	private boolean[] is_down = new boolean[3];
-
 	/**
 	 * Create the panel.
 	 */
 	public GamePanel() {
+		// Set this as current game panel
+		Assets.gamePanel = this;
+		// initialize buttons
+		Assets.buttons = new boolean[3];
+
+		Assets.engineThread.start();// Start engine
+
 		settupInputs();
-		settupBufferedImage();
 		settupGUI();
+
+		System.out.println("Finished GUI");// Debug
 	}
 
 	/*
@@ -85,18 +88,8 @@ public class GamePanel extends JPanel {
 	 * OnPressRestart
 	 */
 	protected void restart() {
-		//TODO: go back to menu
+		// TODO: go back to menu
 		System.out.println("Debug: restart");
-	}
-
-	/*
-	 * creates image and sets graphic
-	 */
-	private void settupBufferedImage() {
-		// Setting up image for game graphics
-		bufferedImage = new BufferedImage(picW, picH,
-				BufferedImage.TYPE_INT_RGB);
-		g2 = bufferedImage.getGraphics();
 	}
 
 	/*
@@ -114,13 +107,13 @@ public class GamePanel extends JPanel {
 			public void actionPerformed(ActionEvent ae) {
 				switch (ae.getActionCommand()) {
 				case " ":
-					is_down[2] = true;
+					Assets.buttons[2] = true;
 					break;
 				case "a":
-					is_down[0] = true;
+					Assets.buttons[0] = true;
 					break;
 				case "d":
-					is_down[1] = true;
+					Assets.buttons[1] = true;
 					break;
 				}
 
@@ -134,13 +127,13 @@ public class GamePanel extends JPanel {
 			public void actionPerformed(ActionEvent ae) {
 				switch (ae.getActionCommand()) {
 				case " ":
-					is_down[2] = false;
+					Assets.buttons[2] = false;
 					break;
 				case "a":
-					is_down[0] = false;
+					Assets.buttons[0] = false;
 					break;
 				case "d":
-					is_down[1] = false;
+					Assets.buttons[1] = false;
 					break;
 				}
 			}
@@ -165,29 +158,6 @@ public class GamePanel extends JPanel {
 		im.put(KeyStroke.getKeyStroke("pressed A"), "l");
 		am.put("l", press);
 		// END: set up listerners for keys
-	}
-
-	/*
-	 * Draws the game panel
-	 */
-	public void draw() {
-		// Clear image
-		g2.clearRect(0, 0, picW, picH);
-
-		// set background
-		g2.setColor(Color.LIGHT_GRAY);
-		g2.fillRect(0, 0, picW, picH);
-
-		// BEGIN: draw on g2
-		// TODO:
-		g2.setColor(Color.red);
-		g2.fillArc(10, 10, 150, 150, 0, 90);
-
-		// END: draw on g2
-
-		// draw the image on panel:
-		this.getGraphics().drawImage(bufferedImage, 0, 0, this);
-
 	}
 
 }

@@ -7,6 +7,8 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.border.EmptyBorder;
 
+import engine.Assets;
+
 public class GameWin extends JFrame {
 
 	private GamePanel contentPane; //This is the game panel which is the main JPanel of this window.
@@ -23,10 +25,9 @@ public class GameWin extends JFrame {
 		setVisible(true);
 		//END: Setting up window
 			
-		//TODO: Game loop, must be moved to it's own class later
-		while(true){
-			contentPane.draw();
-		}
+		//State that the panel is ready
+		Assets.is_panel_read = true;
+
 	}
 
 }
