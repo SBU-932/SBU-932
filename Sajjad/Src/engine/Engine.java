@@ -3,13 +3,19 @@ package engine;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+
+import objects.GameObject;
+import objects.elements.Gun;
 
 public class Engine implements Runnable {
 
 	private BufferedImage bufferedImage; // Game is drawn here
 	private Graphics g2; // The graphic for drawing on game
 
-	// Main Methods:
+	public ArrayList<GameObject> gameObjects = new ArrayList<>();
+
+	// Methods:
 	public Engine() {
 		// Set this object as current Engine
 		Assets.engine = this;
@@ -26,7 +32,7 @@ public class Engine implements Runnable {
 		Assets.is_running = true;
 		init();
 		System.out.println("Starting Engine");// Debug
-		while(!Assets.is_panel_read){
+		while (!Assets.is_panel_read) {
 			System.out.println("Engine Waiting");// Debug
 		}
 		System.out.println("Engine Started");// Debug
@@ -34,7 +40,7 @@ public class Engine implements Runnable {
 			long cTime = System.nanoTime();
 			Assets.delta = (cTime - currentTime) / 1000.f;
 			currentTime = cTime;
-			
+
 			update();
 			draw();
 		}
@@ -54,8 +60,13 @@ public class Engine implements Runnable {
 
 		// BEGIN: draw on g2
 		// TODO:
+
+		// Debug:
 		g2.setColor(Color.red);
 		g2.fillArc(10, 10, 150, 150, 0, 90);
+
+		for (GameObject go : gameObjects)
+			go.draw(g2);
 
 		// END: draw on g2
 
@@ -67,7 +78,8 @@ public class Engine implements Runnable {
 	 * This method is run every frame
 	 */
 	private void update() {
-		// TODO Auto-generated method stub
+		for (GameObject go : gameObjects)
+			go.update();
 
 	}
 
@@ -76,9 +88,17 @@ public class Engine implements Runnable {
 	 */
 	private void init() {
 		settupBufferedImage();
+		loadGameObjects();
 	}
 
-	// Other Methods:
+	/*
+	 * Initializes game
+	 */
+	private void loadGameObjects() {
+		Gun gun = new Gun(400, 570,30,50, Color.GRAY, Color.BLUE);
+		gameObjects.add(gun);
+		
+	}
 
 	/*
 	 * creates image and sets graphic
