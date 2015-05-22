@@ -22,6 +22,7 @@ public class Engine implements Runnable {
 	}
 
 	private void game() {
+		long currentTime = System.nanoTime();
 		Assets.is_running = true;
 		init();
 		System.out.println("Starting Engine");// Debug
@@ -30,6 +31,10 @@ public class Engine implements Runnable {
 		}
 		System.out.println("Engine Started");// Debug
 		while (Assets.is_running) {
+			long cTime = System.nanoTime();
+			Assets.delta = (cTime - currentTime) / 1000.f;
+			currentTime = cTime;
+			
 			update();
 			draw();
 		}
