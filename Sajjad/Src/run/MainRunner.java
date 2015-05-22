@@ -12,7 +12,7 @@ public class MainRunner {
 		
 		//Run game window
 		GameWin g = new GameWin();
-		
+		Assets.engineThread.resume();
 		//TODO: run main menu first later
 	}
 

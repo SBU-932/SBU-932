@@ -10,18 +10,21 @@ import objects.GameObject;
 
 //TODO: Refine!
 public class Gun implements GameObject {
-	int x, y, r, l;
-	Color c, c2;
+	int x, y, r, l;// Position, radius and length of weapon
+	Color c, c2;// Color of tank and the gun
 
-	int modf;
+	int modf; // Modifier used for gun's position to be in center
 
-	double angl = 0;
+	double angl = 0; // Angel at which the gun is pointing to
+	double speed = 1 / 1000.0; // Angel's speed per second
 
-	int speed = 3;
-	boolean shoot = false;
+	boolean shoot = false; // If it has shot
 
-	String[] shoots = { "Bang!", "pew!", "Tadah!" };
+	String[] shoots = { "Bang!", "pew!", "Tadah!" };// Debug
 
+	/*
+	 * Assigning everything!
+	 */
 	public Gun(int x, int y, int r, int l, Color c, Color c2) {
 		this.x = x;
 		this.y = y;
@@ -35,29 +38,44 @@ public class Gun implements GameObject {
 
 	@Override
 	public void update() {
-		float delta = Assets.delta; 
-		boolean[] keys = Assets.buttons;
 		
-		if (keys[0]) {// l
-			// x -= (int)speed*delta/1000;
-			angl -= delta / 1000;
+		//Set angle based on input
+		if (Assets.buttons[0]) {
+			angl -= Assets.delta * speed;
 		}
-		if (keys[1]) {// r
-			// x += (int)speed*delta/1000;
-			angl += delta / 1000;
+		if (Assets.buttons[1]) {
+			angl += Assets.delta * speed;
 		}
-		if (keys[2] != shoot) {
-			shoot = keys[2];
-			if (shoot)
+
+		//shoot
+		if (Assets.buttons[2] != shoot) {
+			// If space statuse with current shot
+			// status is different, there has been a
+			// press
+			shoot = Assets.buttons[2]; // Assign the current space state to
+										// shoot
+			if (shoot) {// If the current key state is positive, it's beginning
+						// of
+						// press, so shoot!
 				System.out
 						.println(shoots[(new Random()).nextInt(shoots.length)]);
+			}
 		}
+
+		
+		//Modifier so gun will always be on top
+		if (angl > 0)
+			angl = 0;
+		if (angl < -180)
+			angl = -180;
+
 	}
 
 	@Override
 	public void draw(Graphics g) {
 		g.setColor(c);
-		g.drawArc(x, y, r, r, 0, 360);
+		//g.drawArc(x, y, r, r, 0, 360);
+		g.fillArc(x, y, r, r, 0, 360);
 
 		g.setColor(c2);
 		double s = Math.sin(Math.toRadians(angl));
@@ -65,6 +83,5 @@ public class Gun implements GameObject {
 		g.drawLine(modf + x, modf + y, x + modf + (int) (l * c), y + modf
 				+ (int) (l * s));
 	}
-
 
 }

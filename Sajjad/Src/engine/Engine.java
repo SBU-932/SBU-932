@@ -31,11 +31,12 @@ public class Engine implements Runnable {
 		long currentTime = System.nanoTime();
 		Assets.is_running = true;
 		init();
-		System.out.println("Starting Engine");// Debug
-		while (!Assets.is_panel_read) {
+		
+		Assets.engineThread.suspend();
+		
+		/*while (!Assets.is_panel_read) {
 			System.out.println("Engine Waiting");// Debug
-		}
-		System.out.println("Engine Started");// Debug
+		}*/
 		while (Assets.is_running) {
 			long cTime = System.nanoTime();
 			Assets.delta = (cTime - currentTime) / 1000.f;
@@ -60,10 +61,6 @@ public class Engine implements Runnable {
 
 		// BEGIN: draw on g2
 		// TODO:
-
-		// Debug:
-		g2.setColor(Color.red);
-		g2.fillArc(10, 10, 150, 150, 0, 90);
 
 		for (GameObject go : gameObjects)
 			go.draw(g2);
