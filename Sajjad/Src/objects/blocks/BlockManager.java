@@ -33,8 +33,7 @@ public class BlockManager implements GameObject {
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
-
+		//TODO: check for fall
 	}
 
 	@Override

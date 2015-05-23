@@ -16,7 +16,7 @@ public class Gun implements GameObject {
 	int modf; // Modifier used for gun's position to be in center
 
 	double angl = 0; // Angel at which the gun is pointing to
-	double speed = 1 / 1000.0; // Angel's speed per second
+	double speed = 0.1 ; // Angel's speed per second
 
 	boolean shoot = false; // If it has shot
 
@@ -59,6 +59,10 @@ public class Gun implements GameObject {
 						// press, so shoot!
 				System.out
 						.println(shoots[(new Random()).nextInt(shoots.length)]);
+				
+				Bullet b = new Bullet(x + modf, y + modf, 5, 0.5, angl);
+				Assets.engine.add(b);
+				
 			}
 		}
 

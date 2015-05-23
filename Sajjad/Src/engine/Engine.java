@@ -14,7 +14,10 @@ public class Engine implements Runnable {
 	private BufferedImage bufferedImage; // Game is drawn here
 	private Graphics g2; // The graphic for drawing on game
 
-	public ArrayList<GameObject> gameObjects = new ArrayList<>();
+	private ArrayList<GameObject> gameObjects = new ArrayList<>();
+	private ArrayList<GameObject> adds = new ArrayList<>();
+	private ArrayList<GameObject> removes = new ArrayList<>();
+	
 
 	// Methods:
 	public Engine() {
@@ -40,9 +43,11 @@ public class Engine implements Runnable {
 		}*/
 		while (Assets.is_running) {
 			long cTime = System.nanoTime();
-			Assets.delta = (cTime - currentTime) / 1000.f;
+			Assets.delta = (cTime - currentTime) / 1000000.f;
 			currentTime = cTime;
 
+			//System.out.println(Assets.delta);//Debug
+			
 			update();
 			draw();
 		}
@@ -78,7 +83,35 @@ public class Engine implements Runnable {
 	private void update() {
 		for (GameObject go : gameObjects)
 			go.update();
+		
+		for(GameObject go: adds)
+			gameObjects.add(go);
+		
+		for(GameObject go: removes){
+			System.out.println("Removing " + gameObjects.size() );
+			gameObjects.remove(go);
+			System.out.println("Removed " + gameObjects.size() );
+		}
 
+		adds.clear();
+		removes.clear();
+		
+	}
+	
+	/*
+	 * This is because you can't modify a gameObjects in update, so we use a cache
+	 */
+	public void add(GameObject o){
+		adds.add(o);
+	}
+	
+
+	/*
+	 * Removes a game object since they can't be reomved while update is called.
+	 */
+	public void remove(GameObject o) {
+		removes.add(o);		
+		System.out.println("Removing");
 	}
 
 	/*
@@ -109,4 +142,5 @@ public class Engine implements Runnable {
 				BufferedImage.TYPE_INT_RGB);
 		g2 = bufferedImage.getGraphics();
 	}
+
 }
