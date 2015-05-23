@@ -6,6 +6,7 @@ import java.util.Random;
 
 import engine.Assets;
 import objects.GameObject;
+import objects.elements.Bullet;
 
 public class BlockManager implements GameObject {
 
@@ -22,9 +23,9 @@ public class BlockManager implements GameObject {
 		Random rnd = new Random();
 
 		for (int i = 0; i < Assets.BIR; i++) {
-			int r = rnd.nextInt(Assets.BIC- 7);
-			//r = 3;
-			r+=3;
+			int r = rnd.nextInt(Assets.BIC - 7);
+			// r = 3;
+			r += 3;
 			for (int j = 0; j < r; j++) {
 				blocks[j][i] = true;
 			}
@@ -33,14 +34,14 @@ public class BlockManager implements GameObject {
 
 	@Override
 	public void update() {
-		//TODO: check for fall
+		// TODO: check for fall
 	}
 
 	@Override
 	public void draw(Graphics g) {
-		
+
 		g.setColor(Color.BLUE);
-		
+
 		for (int i = 0; i < Assets.BIC; i++) {
 			for (int j = 0; j < Assets.BIR; j++) {
 				if (blocks[i][j]) {
@@ -49,6 +50,26 @@ public class BlockManager implements GameObject {
 				}
 			}
 		}
+	}
+
+	/*
+	 * Returns whether or not a buller has hit the target
+	 */
+	public boolean onTarget(Bullet b) {
+		int x = (int) b.getX();
+		int y = (int) b.getY();
+		int j = x / Assets.bSizeW;
+		int i = y / Assets.bSizeH;
+		try {
+			if (blocks[i][j]) {
+				blocks[i][j] = false;
+				return true;
+			}
+		} catch (IndexOutOfBoundsException e) {
+
+		}
+
+		return false;
 	}
 
 }

@@ -25,5 +25,8 @@ public class Assets {
 	public static BlockManager blockManager = null; //the system in charge of blocks
 	
 	public static int BIR = 13, BIC =20; //blocks in row/Column
-	public static int bSizeW, bSizeH;
+	public static int bSizeW, bSizeH; //blocks size
+	
+	public static boolean canShoot = true; // You can shoot one bullet at a time
+	
 }

@@ -52,12 +52,14 @@ public class Gun implements GameObject {
 			// press
 			shoot = Assets.buttons[2]; // Assign the current space state to
 										// shoot
-			if (shoot) {// If the current key state is positive, it's beginning
+			if (shoot && Assets.canShoot) {// If the current key state is positive, it's beginning
 						// of
 						// press, so shoot!
 				
 				Bullet b = new Bullet(x + modf, y + modf, 5, 0.5, angl);
 				Assets.engine.add(b);
+				
+				Assets.canShoot = false;//You can shoot one bullet at a time
 				
 			}
 		}

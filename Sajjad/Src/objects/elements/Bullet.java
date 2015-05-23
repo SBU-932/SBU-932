@@ -31,8 +31,14 @@ public class Bullet implements GameObject {
 		y += speed * Math.sin(alpha) * Assets.delta;
 		
 		
-		if(x < 0 || y < 0 || x > Assets.picW || y > Assets.picH)
-			Assets.engine.remove(this);
+		if(x < 0 || y < 0 || x > Assets.picW || y > Assets.picH){
+			out();
+		}
+		
+		if(Assets.blockManager.onTarget(this))
+		{
+			hit();
+		}
 	}
 
 	@Override
@@ -41,4 +47,29 @@ public class Bullet implements GameObject {
 		g.fillArc((int)x + modf, (int)y + modf, r, r, 0, 360);
 	}
 
+	/*
+	 * This is called when a bullet is went out of window
+	 */
+	private void out(){
+		Assets.engine.remove(this);
+		Assets.canShoot = true;
+	}
+	
+	/*
+	 * This is called when a bullet has hit the target
+	 */
+	private void hit(){
+		System.out.println("Hit");
+		Assets.engine.remove(this);
+		Assets.canShoot = true;
+	}
+	
+	public double getX() {
+		return x;
+	}
+	
+	public double getY() {
+		return y;
+	}
+	
 }
