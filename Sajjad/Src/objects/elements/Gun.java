@@ -20,8 +20,6 @@ public class Gun implements GameObject {
 
 	boolean shoot = false; // If it has shot
 
-	String[] shoots = { "Bang!", "pew!", "Tadah!" };// Debug
-
 	/*
 	 * Assigning everything!
 	 */
@@ -57,8 +55,6 @@ public class Gun implements GameObject {
 			if (shoot) {// If the current key state is positive, it's beginning
 						// of
 						// press, so shoot!
-				System.out
-						.println(shoots[(new Random()).nextInt(shoots.length)]);
 				
 				Bullet b = new Bullet(x + modf, y + modf, 5, 0.5, angl);
 				Assets.engine.add(b);

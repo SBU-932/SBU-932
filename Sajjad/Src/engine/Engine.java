@@ -17,7 +17,6 @@ public class Engine implements Runnable {
 	private ArrayList<GameObject> gameObjects = new ArrayList<>();
 	private ArrayList<GameObject> adds = new ArrayList<>();
 	private ArrayList<GameObject> removes = new ArrayList<>();
-	
 
 	// Methods:
 	public Engine() {
@@ -35,19 +34,20 @@ public class Engine implements Runnable {
 		long currentTime = System.nanoTime();
 		Assets.is_running = true;
 		init();
-		
+
 		Assets.engineThread.suspend();
-		
-		/*while (!Assets.is_panel_read) {
-			System.out.println("Engine Waiting");// Debug
-		}*/
+
+		/*
+		 * while (!Assets.is_panel_read) {
+		 * System.out.println("Engine Waiting");// Debug }
+		 */
 		while (Assets.is_running) {
 			long cTime = System.nanoTime();
 			Assets.delta = (cTime - currentTime) / 1000000.f;
 			currentTime = cTime;
 
-			//System.out.println(Assets.delta);//Debug
-			
+			// System.out.println(Assets.delta);//Debug
+
 			update();
 			draw();
 		}
@@ -83,35 +83,31 @@ public class Engine implements Runnable {
 	private void update() {
 		for (GameObject go : gameObjects)
 			go.update();
-		
-		for(GameObject go: adds)
+
+		for (GameObject go : adds)
 			gameObjects.add(go);
-		
-		for(GameObject go: removes){
-			System.out.println("Removing " + gameObjects.size() );
+
+		for (GameObject go : removes)
 			gameObjects.remove(go);
-			System.out.println("Removed " + gameObjects.size() );
-		}
 
 		adds.clear();
 		removes.clear();
-		
+
 	}
-	
+
 	/*
-	 * This is because you can't modify a gameObjects in update, so we use a cache
+	 * This is because you can't modify a gameObjects in update, so we use a
+	 * cache
 	 */
-	public void add(GameObject o){
+	public void add(GameObject o) {
 		adds.add(o);
 	}
-	
 
 	/*
 	 * Removes a game object since they can't be reomved while update is called.
 	 */
 	public void remove(GameObject o) {
-		removes.add(o);		
-		System.out.println("Removing");
+		removes.add(o);
 	}
 
 	/*
@@ -128,9 +124,9 @@ public class Engine implements Runnable {
 	private void loadGameObjects() {
 		BlockManager bm = new BlockManager();
 		gameObjects.add(bm);
-		Gun gun = new Gun(400, 570,30,50, Color.GRAY, Color.BLUE);
+		Gun gun = new Gun(400, 570, 30, 50, Color.GRAY, Color.BLUE);
 		gameObjects.add(gun);
-		
+
 	}
 
 	/*

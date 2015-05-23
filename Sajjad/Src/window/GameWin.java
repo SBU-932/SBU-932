@@ -24,10 +24,6 @@ public class GameWin extends JFrame {
 		setContentPane(contentPane);
 		setVisible(true);
 		//END: Setting up window
-			
-		//State that the panel is ready
-		Assets.is_panel_read = true;
-
 	}
 
 }
