@@ -13,7 +13,7 @@ public class Bullet implements GameObject {
 
 	double alpha, speed; // the degree and speed
 
-	int modf;// This is to draw from center
+	int modf;// This is to draw aafrom center
 
 	public Bullet(int x, int y, int r, double speed, double alpha) {
 		this.x = x;
@@ -53,6 +53,8 @@ public class Bullet implements GameObject {
 	private void out(){
 		Assets.engine.remove(this);
 		Assets.canShoot = true;
+		
+		Assets.failCount++;
 	}
 	
 	/*
@@ -62,6 +64,8 @@ public class Bullet implements GameObject {
 		System.out.println("Hit");
 		Assets.engine.remove(this);
 		Assets.canShoot = true;
+		
+		Assets.failCount = 0;
 	}
 	
 	public double getX() {

@@ -29,4 +29,8 @@ public class Assets {
 	
 	public static boolean canShoot = true; // You can shoot one bullet at a time
 	
+	public static int failCount = 0;
+	public static double timePassed = 0;
+	public static final double timeLimit = 7000;
+	
 }

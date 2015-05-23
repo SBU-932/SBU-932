@@ -81,6 +81,12 @@ public class Engine implements Runnable {
 	 * This method is run every frame
 	 */
 	private void update() {
+		
+		Assets.timePassed += Assets.delta;
+		
+		if(Assets.failCount >= 2 || Assets.timePassed >= Assets.timeLimit)
+			Assets.blockManager.addLine();
+		
 		for (GameObject go : gameObjects)
 			go.update();
 
@@ -137,6 +143,14 @@ public class Engine implements Runnable {
 		bufferedImage = new BufferedImage(Assets.picW, Assets.picH,
 				BufferedImage.TYPE_INT_RGB);
 		g2 = bufferedImage.getGraphics();
+	}
+
+	/*
+	 * Called when the user is lost
+	 */
+	public void gameOver() {
+		//TODO
+		
 	}
 
 }

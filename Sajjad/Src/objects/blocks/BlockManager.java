@@ -63,6 +63,7 @@ public class BlockManager implements GameObject {
 		try {
 			if (blocks[i][j]) {
 				blocks[i][j] = false;
+				check();
 				return true;
 			}
 		} catch (IndexOutOfBoundsException e) {
@@ -72,4 +73,31 @@ public class BlockManager implements GameObject {
 		return false;
 	}
 
+	/*
+	 * Adds a line
+	 */
+	public void addLine() {
+		try {
+			for (int i = 0; i < Assets.BIR; i++) {
+				int j = 0;
+				while (blocks[j++][i])
+					;
+
+				blocks[j - 1][i] = true;
+			}
+		} catch (ArrayIndexOutOfBoundsException e) {
+			Assets.engine.gameOver();
+		}
+
+		System.out.println("Added line"); // Debug:
+		Assets.failCount = 0;
+		Assets.timePassed = 0;
+	}
+
+	/*
+	 * Checks for falling blocks
+	 */
+	public void check() {
+		// TODO:
+	}
 }
