@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import objects.GameObject;
+import objects.blocks.BlockManager;
 import objects.elements.Gun;
 
 public class Engine implements Runnable {
@@ -92,6 +93,8 @@ public class Engine implements Runnable {
 	 * Initializes game
 	 */
 	private void loadGameObjects() {
+		BlockManager bm = new BlockManager();
+		gameObjects.add(bm);
 		Gun gun = new Gun(400, 570,30,50, Color.GRAY, Color.BLUE);
 		gameObjects.add(gun);
 		

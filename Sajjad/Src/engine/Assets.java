@@ -1,5 +1,6 @@
 package engine;
 
+import objects.blocks.BlockManager;
 import window.GamePanel;
 
 public class Assets {
@@ -22,4 +23,9 @@ public class Assets {
 	public static int picW = 800, picH = 600; // Setting up game boundaries
 	
 	public static boolean is_panel_read = false; //Indicates wether or not the window has been initialized
+	
+	public static BlockManager blockManager = null; //the system in charge of blocks
+	
+	public static int BIR = 13, BIC =10; //blocks in row/Column
+	public static int bSizeW, bSizeH;
 }
