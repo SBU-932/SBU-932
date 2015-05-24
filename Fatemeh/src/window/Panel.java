@@ -26,6 +26,7 @@ public class Panel extends JPanel {
 	public Panel() {
 		game.State.getInstance().button = new boolean [3];
 		
+		game.State.getInstance().Panel=this;
 		
 		setupInputs();
 		setupBotton();
@@ -36,8 +37,8 @@ public class Panel extends JPanel {
 		// TODO Auto-generated method stub
 		JButton button = new JButton("Restart");
 		JButton button1 = new JButton("Quit");
-		button.setLocation(352,193);
-		button.setSize(69, 23);
+		button.setLocation(868,462);
+		button.setSize(89, 23);
 		button.addActionListener(new ActionListener() {
 			
 			@Override
@@ -54,8 +55,8 @@ public class Panel extends JPanel {
 		setLayout(null);
 		add(button);
 		
-		button1.setLocation(352, 247);
-		button1.setSize(69,23);
+		button1.setLocation(868, 517);
+		button1.setSize(88,23);
 		button1.addActionListener(new ActionListener() {
 			
 			@Override
