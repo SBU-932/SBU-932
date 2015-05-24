@@ -10,20 +10,35 @@ package game;
  * @author Setareh
  */
 public class Engine {
-    public void start(){
-    
+    public void playgame(){
+        boolean start=true;
+        start();
+        while(start){
+            init();
+            update();
+            draw();
+            start=check();
+        
+        }
+        end();
     }
-    public void input(){
-    
+    private void start(){
+        
     }
-    public void update(){
-   
+    private void init(){
+        
     }
-    public void draw(){
-   
+    private void update(){
+        
     }
-    public boolean check(){
+    private void draw(){
+        
+    }
+    private boolean check(){
         return true;
+    }
+    private void end(){
+    
     }
    
 }

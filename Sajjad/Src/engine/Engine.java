@@ -46,8 +46,6 @@ public class Engine implements Runnable {
 			Assets.delta = (cTime - currentTime) / 1000000.f;
 			currentTime = cTime;
 
-			// System.out.println(Assets.delta);//Debug
-
 			update();
 			draw();
 		}
