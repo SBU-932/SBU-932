@@ -30,6 +30,7 @@ public class State {
 	public int heigth=600;
 	public double delta;
 	public ArrayList<GameObj>objects = new ArrayList<GameObj>();
+	public ArrayList<GameObj>add = new ArrayList<GameObj>();
 	
 
 }

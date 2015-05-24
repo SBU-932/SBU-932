@@ -55,6 +55,11 @@ public class Engine {
 		//TODO
 		for(GameObj go: State.getInstance().objects)
 			go.update();
+		
+		for(GameObj go: State.getInstance().add)
+			State.getInstance().objects.add(go);
+		
+		State.getInstance().add.clear();
 	}
 	
 	private void end(){

@@ -17,6 +17,7 @@ import object.GameObj;
 public class Shelik implements GameObj {
 
 	int x, y, l, r;
+	boolean shoot = true;
 	double alpha, speed = 0.005;
 
 	public Shelik(int x, int y, int length, int r, double alpha) {
@@ -37,6 +38,18 @@ public class Shelik implements GameObj {
 
 		if (State.getInstance().button[1]) {
 			alpha += speed * State.getInstance().delta;
+		}
+
+		if (State.getInstance().button[2]) {
+			if (shoot) {
+				shoot = false;
+				// TODO: shelik kn
+				Ball ball = new Ball(5, x + r / 2, y + r / 2, alpha);
+				State.getInstance().add.add(ball);
+				System.out.println("Shooooooooot");
+			}
+		} else {
+			shoot = true;
 		}
 	}
 

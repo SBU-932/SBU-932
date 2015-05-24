@@ -11,7 +11,7 @@ public class Ball implements GameObj {
 	int r;
 	double x,y;
 	double alpha;
-	double speed;
+	double speed = 1;
 	
 
 	public Ball(int r,double x,double y,double alpha) {
@@ -26,8 +26,10 @@ public class Ball implements GameObj {
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		x+=speed*Math.cos(alpha);
-		y+=speed*Math.sin(alpha);
+		x+=speed*Math.cos(alpha)*State.getInstance().delta;
+		y+=speed*Math.sin(alpha)*State.getInstance().delta;
+		
+		
 		
 	}
 
