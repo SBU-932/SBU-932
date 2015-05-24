@@ -64,7 +64,6 @@ public class Engine implements Runnable {
 		g2.fillRect(0, 0, Assets.picW, Assets.picH);
 
 		// BEGIN: draw on g2
-		// TODO:
 
 		for (GameObject go : gameObjects)
 			go.draw(g2);
