@@ -3,6 +3,9 @@ package game;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+
+import object.GameObj;
 
 public class State {
 	
@@ -25,6 +28,8 @@ public class State {
 	public Graphics g;
 	public  int width=800;
 	public int heigth=600;
+	
+	public ArrayList<GameObj>objects = new ArrayList<GameObj>();
 	
 
 }
