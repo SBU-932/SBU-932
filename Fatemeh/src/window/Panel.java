@@ -1,14 +1,18 @@
 package window;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
 import javax.swing.InputMap;
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.KeyStroke;
+
+import java.awt.FlowLayout;
 
 public class Panel extends JPanel {
 	
@@ -20,11 +24,53 @@ public class Panel extends JPanel {
 	 * Create the panel.
 	 */
 	public Panel() {
-		game.State.getInstance().botton = new boolean [3];
+		game.State.getInstance().button = new boolean [3];
 		
 		
 		setupInputs();
+		setupBotton();
 
+	}
+
+	private void setupBotton() {
+		// TODO Auto-generated method stub
+		JButton button = new JButton("Restart");
+		JButton button1 = new JButton("Quit");
+		button.setLocation(352,193);
+		button.setSize(69, 23);
+		button.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				Restart();
+				
+			}
+
+			private void Restart() {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		setLayout(null);
+		add(button);
+		
+		button1.setLocation(352, 247);
+		button1.setSize(69,23);
+		button1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				Quit();
+			}
+
+			private void Quit() {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		add(button1);
+		
 	}
 
 	private void setupInputs() {
@@ -35,21 +81,21 @@ public class Panel extends JPanel {
 		AbstractAction press = new AbstractAction() {
 			
 			
-			
 			@Override
 			public void actionPerformed(ActionEvent ev) {
+				System.out.println("Press"+ev.getActionCommand());
 				// TODO Auto-generated method stub
 				switch(ev.getActionCommand()){
 				case "a":
-					game.State.getInstance().botton[0] = true;
+					game.State.getInstance().button[0] = true;
 					break;
 					
 				case "d":
-					game.State.getInstance().botton[1] = true;
+					game.State.getInstance().button[1] = true;
 					break;
 					
 				case" ":
-					game.State.getInstance().botton[2]= true;
+					game.State.getInstance().button[2]= true;
 				}
 				
 			}
@@ -59,18 +105,19 @@ public class Panel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent ev) {
+				System.out.println("Release"+ev.getActionCommand());
 				// TODO Auto-generated method stub
 				switch (ev.getActionCommand()) {
 				case "a":
-					game.State.getInstance().botton[0] = false;
+					game.State.getInstance().button[0] = false;
 
 					break;
 				case "d":
-					game.State.getInstance().botton[1] = false;
+					game.State.getInstance().button[1] = false;
 					System.out.println("release");
 					break;
 				case " ":
-					game.State.getInstance().botton[2] = false;
+					game.State.getInstance().button[2] = false;
 					break;
 
 				}

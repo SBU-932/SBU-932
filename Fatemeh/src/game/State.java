@@ -12,6 +12,6 @@ public class State {
 		return instance;
 	}
 	
-	public boolean []botton;
+	public boolean []button;
 
 }
