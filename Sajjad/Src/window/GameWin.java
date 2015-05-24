@@ -14,6 +14,9 @@ public class GameWin extends JFrame {
 	private GamePanel contentPane; //This is the game panel which is the main JPanel of this window.
 
 	public GameWin() {		
+		
+		Assets.window = this;
+		
 		//BEGIN: Setting up window
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//setBounds(100, 100, 1000, 600);

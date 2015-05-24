@@ -4,6 +4,7 @@ import javax.swing.JLabel;
 
 import objects.blocks.BlockManager;
 import window.GamePanel;
+import window.GameWin;
 
 public class Assets {
 	public static GamePanel gamePanel;
@@ -24,7 +25,7 @@ public class Assets {
 	
 	public static int picW = 800, picH = 600; // Setting up game boundaries
 	
-	public static BlockManager blockManager = null; //the system in charge of blocks
+	public static BlockManager blockManager; //the system in charge of blocks
 	
 	public static int BIR = 13, BIC =20; //blocks in row/Column
 	public static int bSizeW, bSizeH; //blocks size
@@ -37,4 +38,6 @@ public class Assets {
 	
 	public static int score = 0;
 	public static JLabel jSore; // Shows the score
+
+	public static GameWin window;
 }

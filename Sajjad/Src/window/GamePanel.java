@@ -96,7 +96,7 @@ public class GamePanel extends JPanel {
 	 */
 	protected void restart() {
 		// TODO: go back to menu
-		System.out.println("Debug: restart");
+		Assets.engine.restart();
 	}
 
 	/*

@@ -98,6 +98,8 @@ public class BlockManager implements GameObject {
 	 * Checks for falling blocks
 	 */
 	public void check() {
+		winCheck();
+		
 		boolean[][] isConnected = new boolean[Assets.BIC][Assets.BIR];
 		for (int i = 0; i < isConnected[0].length; i++)
 			isConnected[0][i] = blocks[0][i];
@@ -137,5 +139,15 @@ public class BlockManager implements GameObject {
 		}
 
 		blocks = isConnected;
+	}
+
+	private void winCheck() {
+		boolean win = true;
+		for(boolean[] boo: blocks)
+			for(boolean b: boo)
+				if(b)
+					win = false;
+		if(win)
+			Assets.engine.win();
 	}
 }

@@ -5,6 +5,8 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import objects.GameObject;
 import objects.blocks.BlockManager;
 import objects.elements.Gun;
@@ -143,11 +145,53 @@ public class Engine implements Runnable {
 	}
 
 	/*
+	 * Restarts the game
+	 */
+	public void restart(){
+		Assets.is_running = false;
+		Assets.canShoot = true;
+		Assets.delta = 0;
+		Assets.timePassed = 0;
+		Assets.score = 0;
+		
+		
+		Assets.window.dispose();
+		
+		new Thread(new Runnable(){
+
+			@Override
+			public void run() {
+				try {
+					Thread.sleep(200);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				
+				run.MainRunner.main(null);
+			}
+			
+		}).start();
+	}
+	
+	/*
 	 * Called when the user is lost
 	 */
 	public void gameOver() {
 		//TODO
+		JOptionPane.showMessageDialog(null, "Game Over");
 		
+		
+		restart();
+	}
+
+	/*
+	 * Called when the user wins
+	 */
+	public void win() {
+		// TODO 
+		JOptionPane.showMessageDialog(null, "You win!");
+		
+		restart();
 	}
 
 }
