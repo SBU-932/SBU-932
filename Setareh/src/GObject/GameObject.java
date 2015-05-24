@@ -3,20 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game;
+package GObject;
 
-import State.State;
-import javax.swing.JPanel;
+import java.awt.Graphics;
 
 /**
  *
  * @author Setareh
  */
-public class Background extends JPanel{
-
-    public Background() {
-        State.instance.game = this;
-    }
-
+public interface GameObject {
+    	void update();
+	void draw(Graphics g);
 
 }

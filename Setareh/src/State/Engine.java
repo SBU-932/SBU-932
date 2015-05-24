@@ -7,10 +7,12 @@ package State;
  */
 
 
+import GObject.GameObject;
 import game.Play;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 /**
  *
@@ -19,6 +21,7 @@ import java.awt.image.BufferedImage;
 public class Engine {
     private BufferedImage bufferedImage;
     private Graphics g2;
+    private ArrayList<GameObject> gameObjects = new ArrayList<>();
     public Engine(){
     
     }
@@ -50,14 +53,19 @@ public class Engine {
         settupBufferedImage();
     }
     private void update(){
-        
+        for (GameObject  g : gameObjects)//tak tak object ha ra update mikonad !!
+            g.update();
     }
     private void draw(){
+        
         g2.clearRect(0, 0, 800, 600);
         g2.setColor(Color.WHITE);
         g2.fillRect(0, 0, 800, 600);
         
         State.instance.game.getGraphics().drawImage(bufferedImage, 0, 0, State.instance.game);
+        for (GameObject  g : gameObjects)//tak tak object ha ra rasm mikonad
+            g.draw(g2);
+
     }
     private boolean check(){
         return true;
