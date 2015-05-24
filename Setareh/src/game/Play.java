@@ -46,6 +46,11 @@ public class Play extends javax.swing.JFrame {
 
         quit_jButton.setBackground(new java.awt.Color(153, 153, 255));
         quit_jButton.setText("quit");
+        quit_jButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quit_jButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -74,6 +79,10 @@ public class Play extends javax.swing.JFrame {
     private void restart_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restart_jButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_restart_jButtonActionPerformed
+
+    private void quit_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quit_jButtonActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_quit_jButtonActionPerformed
 
     /**
      * @param args the command line arguments

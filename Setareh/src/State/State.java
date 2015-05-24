@@ -5,17 +5,22 @@
  */
 package State;
 
+import GObject.GameObject;
 import game.Background;
+import java.util.ArrayList;
 
 /**
  *
  * @author Setareh
  */
 public class State {
+    public double delta;
     private State(){
     
     }
     public static final State instance = new State();
     
     public Background game;
+    public boolean []button;
+    public ArrayList<GameObject> add = new ArrayList<>();
 }

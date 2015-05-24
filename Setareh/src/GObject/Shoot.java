@@ -5,6 +5,7 @@
  */
 package GObject;
 
+import State.State;
 import java.awt.Color;
 import java.awt.Graphics;
 
@@ -12,12 +13,20 @@ import java.awt.Graphics;
  *
  * @author Setareh
  */
-public class Shot implements GameObject{
+public class Shoot implements GameObject{
 
     int x = 400 , y= 550;
+    double alpha;
+    double speed = 1;
+    
+    public Shoot(double alpha){
+        this.alpha=alpha;
+    }
+
     @Override
     public void update() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        x+=speed*Math.cos(alpha)*State.instance.delta;
+        y+=speed*Math.cos(alpha)*State.instance.delta;
     }
 
     @Override

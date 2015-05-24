@@ -7,6 +7,7 @@ package State;
  */
 
 
+import GObject.Arrow;
 import GObject.GameObject;
 import game.Play;
 import java.awt.Color;
@@ -44,6 +45,7 @@ public class Engine {
         try
         {
         first.setVisible(true);
+
         }
         catch(Exception e)
         {
@@ -51,6 +53,9 @@ public class Engine {
         }  
         
         settupBufferedImage();
+		
+	Arrow a = new Arrow(0);
+        gameObjects.add(a);
     }
     private void update(){
         for (GameObject  g : gameObjects)//tak tak object ha ra update mikonad !!
@@ -64,6 +69,8 @@ public class Engine {
         
         State.instance.game.getGraphics().drawImage(bufferedImage, 0, 0, State.instance.game);
         for (GameObject  g : gameObjects)//tak tak object ha ra rasm mikonad
+            g.draw(g2);
+        for (GameObject  g : State.instance.add)//tak tak object ha ra rasm mikonad
             g.draw(g2);
 
     }

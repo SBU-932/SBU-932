@@ -67,6 +67,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="quit"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="quit_jButtonActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
