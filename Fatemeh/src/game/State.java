@@ -28,7 +28,7 @@ public class State {
 	public Graphics g;
 	public  int width=800;
 	public int heigth=600;
-	
+	public double delta;
 	public ArrayList<GameObj>objects = new ArrayList<GameObj>();
 	
 

@@ -1,47 +1,44 @@
-/**
- * 
- */
 package object.display;
+
+import game.State;
 
 import java.awt.Color;
 import java.awt.Graphics;
 
 import object.GameObj;
 
-/**
- * @author M
- *
- */
-public class Shelik implements GameObj {
-	
-	int x,y,l,r;
+public class Ball implements GameObj {
+	int r;
+	double x,y;
 	double alpha;
-	public Shelik(int x,int y,int length,int r,double alpha) {
+	double speed;
+	
+
+	public Ball(int r,double x,double y,double alpha) {
 		// TODO Auto-generated constructor stub
+		this.r =r;
 		this.x=x;
 		this.y=y;
-		this.l=length;
-		this.r=r;
 		this.alpha=alpha;
+		
 	}
 
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
+		x+=speed*Math.cos(alpha);
+		y+=speed*Math.sin(alpha);
 		
 	}
 
 	@Override
 	public void draw(Graphics g) {
 		// TODO Auto-generated method stub
-		g.setColor(Color.MAGENTA);
-		g.fillArc(x, y, r, r, 0, 360);
-		
-		g.setColor(Color.YELLOW);
-		g.drawLine(x+r/2, y+r/2, x+r/2 + (int)l*(int)Math.cos(alpha), y+r/2+(int)l*(int)Math.sin(alpha));
+		g.setColor(Color.DARK_GRAY);
+		g.fillRect((int)x, (int)y, r, r);
 		
 		
-		System.out.println("Here");
+		
 	}
 
 	@Override

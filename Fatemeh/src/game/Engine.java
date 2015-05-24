@@ -3,6 +3,8 @@ package game;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 
+import object.GameObj;
+import object.display.Shelik;
 import window.Frame;
 
 public class Engine {
@@ -12,9 +14,14 @@ public class Engine {
 	
 	public void Maingame(){
 		init();
+		
+		
+		long currentTime = System.nanoTime();
 		while(start){
 			//TODO
-			
+			long updatedTime = System.nanoTime();
+			State.getInstance().delta = (updatedTime - currentTime)/1000000;
+			currentTime = updatedTime;
 			update();
 			draw();
 		}
@@ -28,6 +35,10 @@ public class Engine {
 		State.getInstance().g.fillRect(0, 0,State.getInstance().width
 				,State.getInstance().heigth);
 		
+		
+		for(GameObj go: State.getInstance().objects)
+			go.draw(State.getInstance().g);
+		
 		State.getInstance().Panel.getGraphics().drawImage(State.getInstance().buffered
 				, 0, 0, State.getInstance().Panel);
 	}
@@ -35,6 +46,9 @@ public class Engine {
 	private void init(){
 		Frame frame = new Frame();
 		settupBuffered();
+		
+		Shelik s = new Shelik(400,500,25,30,0);
+		State.getInstance().objects.add(s);
 	}
 	
 	private void update(){
