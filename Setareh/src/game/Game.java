@@ -5,6 +5,8 @@
  */
 package game;
 
+import State.Engine;
+
 /**
  *
  * @author Setareh
@@ -15,15 +17,8 @@ public class Game {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Play first = new Play();
-        try
-        {
-        first.setVisible(true);
-        }
-        catch(Exception e)
-        {
-            
-        }
+        Engine first =new Engine();
+        first.playgame();
 // TODO code application logic here
     }
     
