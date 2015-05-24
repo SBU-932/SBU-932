@@ -10,7 +10,7 @@ package game;
  * @author Setareh
  */
 public class Engine {
-    public void game(){
+    public void playgame(){
         boolean start=true;
         start();
         while(start){
@@ -23,16 +23,16 @@ public class Engine {
         end();
     }
     private void start(){
-    
+        
     }
     private void init(){
-    
+        
     }
     private void update(){
-   
+        
     }
     private void draw(){
-   
+        
     }
     private boolean check(){
         return true;
