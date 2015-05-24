@@ -3,22 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game;
+package State;
 
-import State.State;
-import java.awt.Color;
-import java.awt.Graphics;
-import javax.swing.JPanel;
+import game.Background;
 
 /**
  *
  * @author Setareh
  */
-public class Background extends JPanel{
-
-    public Background() {
-        State.instance.game = this;
+public class State {
+    private State(){
+    
     }
-
-
+    public static final State instance = new State();
+    
+    public Background game;
 }
