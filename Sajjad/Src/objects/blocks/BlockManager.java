@@ -53,7 +53,7 @@ public class BlockManager implements GameObject {
 	}
 
 	/*
-	 * Returns whether or not a buller has hit the target
+	 * Returns whether or not a bullet has hit the target
 	 */
 	public boolean onTarget(Bullet b) {
 		int x = (int) b.getX();
@@ -89,7 +89,7 @@ public class BlockManager implements GameObject {
 			Assets.engine.gameOver();
 		}
 
-		System.out.println("Added line"); // Debug:
+		// System.out.println("Added line"); // Debug:
 		Assets.failCount = 0;
 		Assets.timePassed = 0;
 	}
@@ -98,6 +98,44 @@ public class BlockManager implements GameObject {
 	 * Checks for falling blocks
 	 */
 	public void check() {
-		// TODO:
+		boolean[][] isConnected = new boolean[Assets.BIC][Assets.BIR];
+		for (int i = 0; i < isConnected[0].length; i++)
+			isConnected[0][i] = blocks[0][i];
+
+		for (int j = 0; j < isConnected[0].length; j++) {
+			for (int i = 0; i < isConnected.length; i++) {
+				if (isConnected[i][j]) {
+					try {
+						if (blocks[i + 1][j])
+							isConnected[i + 1][j] = true;
+					} catch (IndexOutOfBoundsException e) {
+
+					}
+
+					try {
+						if (blocks[i - 1][j])
+							isConnected[i - 1][j] = true;
+					} catch (IndexOutOfBoundsException e) {
+
+					}
+
+					try {
+						if (blocks[i][j + 1])
+							isConnected[i][j + 1] = true;
+					} catch (IndexOutOfBoundsException e) {
+
+					}
+
+					try {
+						if (blocks[i][j - 1])
+							isConnected[i][j - 1] = true;
+					} catch (IndexOutOfBoundsException e) {
+
+					}
+				}
+			}
+		}
+		
+		blocks = isConnected;
 	}
 }
