@@ -53,6 +53,8 @@ public class Engine {
 	
 	private void update(){
 		//TODO
+		for(GameObj go: State.getInstance().objects)
+			go.update();
 	}
 	
 	private void end(){
