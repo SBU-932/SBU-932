@@ -135,7 +135,7 @@ public class BlockManager implements GameObject {
 				}
 			}
 		}
-		
+
 		blocks = isConnected;
 	}
 }

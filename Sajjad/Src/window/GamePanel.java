@@ -11,6 +11,7 @@ import javax.swing.ActionMap;
 import javax.swing.InputMap;
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
@@ -75,6 +76,12 @@ public class GamePanel extends JPanel {
 
 		});
 		add(jQuit);
+		
+		JLabel jScore = new JLabel("Score: " + Assets.score);
+		Assets.jSore = jScore;
+		jScore.setSize(200,100);
+		jScore.setLocation(800, 100);
+		add(jScore);
 	}
 
 	/*

@@ -61,7 +61,10 @@ public class Bullet implements GameObject {
 	 * This is called when a bullet has hit the target
 	 */
 	private void hit(){
-		System.out.println("Hit");
+		//System.out.println("Hit");
+		Assets.score++;
+		Assets.jSore.setText("Score: " + Assets.score);
+		
 		Assets.engine.remove(this);
 		Assets.canShoot = true;
 		

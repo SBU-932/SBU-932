@@ -1,5 +1,7 @@
 package engine;
 
+import javax.swing.JLabel;
+
 import objects.blocks.BlockManager;
 import window.GamePanel;
 
@@ -29,8 +31,10 @@ public class Assets {
 	
 	public static boolean canShoot = true; // You can shoot one bullet at a time
 	
-	public static int failCount = 0;
-	public static double timePassed = 0;
-	public static final double timeLimit = 7000;
+	public static int failCount = 0; //If equals 2, it will trigger new line
+	public static double timePassed = 0; // if reach timeLimit will trigger new line
+	public static final double timeLimit = 7000; // time limit of time passed
 	
+	public static int score = 0;
+	public static JLabel jSore; // Shows the score
 }
