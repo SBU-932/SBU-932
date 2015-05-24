@@ -17,7 +17,7 @@ public class Play extends javax.swing.JFrame {
     public Play() {
         initComponents();
         Background background = new Background();
-        background.setSize(800, 600);
+        background.setSize(1000, 600);
         add(background);
     }
 
