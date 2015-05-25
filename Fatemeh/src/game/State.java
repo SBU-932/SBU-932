@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import object.GameObj;
+import object.block.Block;
 
 public class State {
 	
@@ -31,6 +32,17 @@ public class State {
 	public double delta;
 	public ArrayList<GameObj>objects = new ArrayList<GameObj>();
 	public ArrayList<GameObj>add = new ArrayList<GameObj>();
+	public ArrayList<GameObj>remove = new ArrayList<GameObj>();
+	public boolean [][] block;
+	public int row=15;
+	public int clom =20;
+	public int Nr;
+	public int Nc;
+	public Block blocks = new Block();
+
+
+	
+	
 	
 
 }

@@ -29,7 +29,15 @@ public class Ball implements GameObj {
 		x+=speed*Math.cos(alpha)*State.getInstance().delta;
 		y+=speed*Math.sin(alpha)*State.getInstance().delta;
 		
+		if( x <0 || y<0 || x> State.getInstance().width || y> State.getInstance().heigth){
+			
+			goout();
+		}
 		
+	}
+
+	private void goout() {
+		// TODO Auto-generated method stub
 		
 	}
 

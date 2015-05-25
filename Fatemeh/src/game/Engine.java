@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 
 import object.GameObj;
+import object.block.Block;
 import object.display.Shelik;
 import window.Frame;
 
@@ -46,9 +47,12 @@ public class Engine {
 	private void init(){
 		Frame frame = new Frame();
 		settupBuffered();
-		
+		Block b = new Block();
+		State.getInstance().objects.add(b);
 		Shelik s = new Shelik(400,500,25,30,0);
 		State.getInstance().objects.add(s);
+		
+		
 	}
 	
 	private void update(){
@@ -59,7 +63,13 @@ public class Engine {
 		for(GameObj go: State.getInstance().add)
 			State.getInstance().objects.add(go);
 		
+
+		for(GameObj go: State.getInstance().remove)
+			State.getInstance().objects.remove(go);
+		
+		
 		State.getInstance().add.clear();
+		State.getInstance().remove.clear();
 	}
 	
 	private void end(){
