@@ -39,11 +39,12 @@ public class Block implements GameObj {
 
 		g.setColor(Color.RED);
 
-		for (int i = State.getInstance().Nr; i < 0; i--) {
-			for (int j = State.getInstance().Nc; j < 0; j--) {
+		for (int i = State.getInstance().Nr-1; i >= 0; i--) {
+			for (int j = State.getInstance().Nc-1; j >= 0; j--) {
 				if (State.getInstance().block[i][j]) {
 					
-					g.fillRect(j, i,State.getInstance().row, State.getInstance().clom);
+					g.fillRect(i*State.getInstance().row, j*State.getInstance().clom
+							,State.getInstance().row, State.getInstance().clom);
 
 				}
 			}
