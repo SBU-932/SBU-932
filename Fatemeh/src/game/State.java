@@ -38,7 +38,7 @@ public class State {
 	public int clom =20;
 	public int Nr;
 	public int Nc;
-	public Block blocks = new Block();
+	public Block blocks;
 
 
 	

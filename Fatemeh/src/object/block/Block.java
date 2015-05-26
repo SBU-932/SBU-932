@@ -11,7 +11,7 @@ public class Block implements GameObj {
 
 	public Block() {
 		// TODO Auto-generated constructor stub
-		State.getInstance().blocks = this;
+		State.getInstance().blocks=this;
 		State.getInstance().Nr = (State.getInstance().width / State
 				.getInstance().clom) - 10;
 		State.getInstance().Nc = (State.getInstance().heigth / State
@@ -37,13 +37,13 @@ public class Block implements GameObj {
 	public void draw(Graphics g) {
 		// TODO Auto-generated method stub
 
-		State.getInstance().g.setColor(Color.RED);
+		g.setColor(Color.RED);
 
 		for (int i = State.getInstance().Nr; i < 0; i--) {
 			for (int j = State.getInstance().Nc; j < 0; j--) {
 				if (State.getInstance().block[i][j]) {
-					State.getInstance().g.fillRect(j, i,
-							State.getInstance().row, State.getInstance().clom);
+					
+					g.fillRect(j, i,State.getInstance().row, State.getInstance().clom);
 
 				}
 			}
