@@ -19,8 +19,8 @@ public class Block implements GameObj {
 		State.getInstance().block = new boolean[State.getInstance().Nr][State
 				.getInstance().Nc];
 
-		for (int i = State.getInstance().Nr; i < 0; i--) {
-			for (int j = State.getInstance().Nc; j < 0; j--) {
+		for (int i = State.getInstance().Nr-1; i >= 0; i--) {
+			for (int j = State.getInstance().Nc-1; j >= 0; j--) {
 
 				State.getInstance().block[i][j] = true;
 			}
