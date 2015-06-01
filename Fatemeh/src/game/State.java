@@ -34,10 +34,10 @@ public class State {
 	public ArrayList<GameObj>add = new ArrayList<GameObj>();
 	public ArrayList<GameObj>remove = new ArrayList<GameObj>();
 	public boolean [][] block;
-	public int row=15;
-	public int clom =20;
-	public int Nr;
-	public int Nc;
+	public int row;
+	public int clom;
+	public int Nr=25;
+	public int Nc=25;
 	public Block blocks;
 
 
