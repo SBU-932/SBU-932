@@ -12,10 +12,10 @@ public class Block implements GameObj {
 	public Block() {
 		// TODO Auto-generated constructor stub
 		State.getInstance().blocks=this;
-		State.getInstance().Nr = (State.getInstance().width / State
-				.getInstance().clom) - 10;
-		State.getInstance().Nc = (State.getInstance().heigth / State
-				.getInstance().row) - 10;
+		State.getInstance().row = (State.getInstance().width / State
+				.getInstance().Nr);
+		State.getInstance().clom= (State.getInstance().heigth/ State
+				.getInstance().Nc)-10 ;
 		State.getInstance().block = new boolean[State.getInstance().Nr][State
 				.getInstance().Nc];
 
@@ -43,8 +43,8 @@ public class Block implements GameObj {
 			for (int j = State.getInstance().Nc-1; j >= 0; j--) {
 				if (State.getInstance().block[i][j]) {
 					
-					g.fillRect(i*State.getInstance().row, j*State.getInstance().clom
-							,State.getInstance().row, State.getInstance().clom);
+					g.fillRect(i*State.getInstance().row+1, j*State.getInstance().clom+1
+							,State.getInstance().row-1, State.getInstance().clom-1);
 
 				}
 			}
