@@ -45,6 +45,12 @@ public class Shot implements GameObj {
 		if( x <0 || y<0 || x> State.getInstance().length || y> State.getInstance().width){
 			goout();
 		}
+		
+		if(State.getInstance().blocks.bump(this)){
+			System.out.println("dfghj");
+			
+			
+		}
 	}
 	
 

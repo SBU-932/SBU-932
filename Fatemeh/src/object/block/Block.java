@@ -67,12 +67,14 @@ public class Block implements GameObj {
 		
 		int x = ((int) shot.getX()) / State.getInstance().row;
 		int y = ((int) shot.getY()) / State.getInstance().clom;
-		
-		if (State.getInstance().block[x][y]) {
-			State.getInstance().block[x][y] = false;
-			System.out.println(x+ " "+ y);
-			return true;
+		if(x>=0&y>=0&x<State.getInstance().Nr&y<State.getInstance().Nc){
+			if (State.getInstance().block[x][y]) {
+				State.getInstance().block[x][y] = false;
+				System.out.println(x+ " "+ y);
+				return true;
+			}
 		}
+		
 		return false;
 
 	}
