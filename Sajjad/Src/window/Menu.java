@@ -10,6 +10,7 @@ import javax.swing.JButton;
 
 import engine.Assets;
 import engine.Engine;
+import engine.Engine2;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -37,6 +38,27 @@ public class Menu extends JFrame {
 		});
 		btnPhase.setBounds(174, 62, 97, 25);
 		contentPane.add(btnPhase);
+		
+		JButton btnPhase_1 = new JButton("Phase 2");
+		btnPhase_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				phase2();
+			}
+		});
+		btnPhase_1.setBounds(174, 111, 97, 25);
+		contentPane.add(btnPhase_1);
+	}
+
+	protected void phase2() {
+		// Init engine thread:
+		Assets.engineThread = new Thread(new Engine2());
+
+		// Run game window
+		GameWin g = new GameWin();
+		Assets.engineThread.resume();
+		// TODO: run main menu first later
+		this.setVisible(false);
+		
 	}
 
 	protected void phase1() {

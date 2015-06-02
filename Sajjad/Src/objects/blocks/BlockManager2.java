@@ -9,11 +9,11 @@ import objects.GameObject;
 import objects.elements.Bullet;
 import objects.elements.Bullet2;
 
-public class BlockManager implements GameObject {
+public class BlockManager2 extends BlockManager implements GameObject {
 
 	private boolean[][] blocks;// This holds the blocks
 
-	public BlockManager() {
+	public BlockManager2() {
 		Assets.blockManager = this;
 
 		Assets.bSizeH = Assets.picH / Assets.BIC;
@@ -73,11 +73,26 @@ public class BlockManager implements GameObject {
 
 		return false;
 	}
-	
+
 	/*
 	 * On target for Bullet 2
 	 */
 	public boolean onTarget(Bullet2 b) {
+		// TODO: improve for Bullet2 (if nec..)
+		int x = (int) b.getX();
+		int y = (int) b.getY();
+		int j = x / Assets.bSizeW;
+		int i = y / Assets.bSizeH;
+		try {
+			if (blocks[i][j]) {
+				blocks[i][j] = false;
+				check();
+				return true;
+			}
+		} catch (IndexOutOfBoundsException e) {
+
+		}
+
 		return false;
 	}
 
@@ -107,7 +122,7 @@ public class BlockManager implements GameObject {
 	 */
 	public void check() {
 		winCheck();
-		
+
 		boolean[][] isConnected = new boolean[Assets.BIC][Assets.BIR];
 		for (int i = 0; i < isConnected[0].length; i++)
 			isConnected[0][i] = blocks[0][i];
@@ -151,11 +166,11 @@ public class BlockManager implements GameObject {
 
 	private void winCheck() {
 		boolean win = true;
-		for(boolean[] boo: blocks)
-			for(boolean b: boo)
-				if(b)
+		for (boolean[] boo : blocks)
+			for (boolean b : boo)
+				if (b)
 					win = false;
-		if(win)
+		if (win)
 			Assets.engine.win();
 	}
 }
