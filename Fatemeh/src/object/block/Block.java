@@ -51,9 +51,28 @@ public class Block implements GameObj {
 	public void draw(Graphics g) {
 		// TODO
 		g.setColor(Color.RED);
-	}
 
+		for (int i = State.getInstance().Nr - 1; i >= 0; i--) {
+			for (int j = State.getInstance().Nc - 1; j >= 0; j--) {
+				if (State.getInstance().block[i][j])
+					g.fillRect(i * State.getInstance().row + 1,
+							j * State.getInstance().clom + 1,
+							State.getInstance().row - 1,
+							State.getInstance().clom - 1);
+			}
+		}
+	}
+	
 	public boolean bump(Shot shot) {
+		
+		int x = ((int) shot.getX()) / State.getInstance().row;
+		int y = ((int) shot.getY()) / State.getInstance().clom;
+		
+		if (State.getInstance().block[x][y]) {
+			State.getInstance().block[x][y] = false;
+			System.out.println(x+ " "+ y);
+			return true;
+		}
 		return false;
 
 	}

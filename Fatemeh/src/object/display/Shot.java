@@ -24,6 +24,14 @@ public class Shot implements GameObj {
 		this.alpha=alpha;
 		
 	}
+	
+	public double getX() {
+		return x;
+	}
+	
+	public double getY() {
+		return y;
+	}
 
 	@Override
 	public void update() {
