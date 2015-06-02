@@ -10,7 +10,9 @@ public class Bullet2 implements GameObject {
 
 	double x, y;// position
 	int r;// radius
-
+	int count = 0; // Mirror count
+	int maxCount = 3;//Maximum mirror count
+	
 	double alpha, speed; // the degree and speed
 
 	int modf;// This is to draw aafrom center
@@ -44,10 +46,12 @@ public class Bullet2 implements GameObject {
 	 * Mirrors the movement
 	 */
 	private void mirror() {
+		count ++ ;
 		alpha = Math.PI - alpha;
 		System.out.println(alpha);
 		if (Math.abs(alpha - Math.PI) < 1e-7 || Math.abs(alpha - 0) < 1e-7)
 			out();
+		if(count > maxCount) out();
 	}
 
 	@Override

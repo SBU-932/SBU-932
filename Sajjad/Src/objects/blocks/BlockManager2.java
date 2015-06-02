@@ -11,7 +11,7 @@ import objects.elements.Bullet2;
 
 public class BlockManager2 extends BlockManager implements GameObject {
 
-	private boolean[][] blocks;// This holds the blocks
+	private Type[][] blocks;// This holds the blocks
 
 	public BlockManager2() {
 		Assets.blockManager = this;
@@ -19,7 +19,7 @@ public class BlockManager2 extends BlockManager implements GameObject {
 		Assets.bSizeH = Assets.picH / Assets.BIC;
 		Assets.bSizeW = Assets.picW / Assets.BIR;
 
-		blocks = new boolean[Assets.BIC][Assets.BIR];
+		blocks = new Type[Assets.BIC][Assets.BIR];
 
 		Random rnd = new Random();
 
@@ -28,7 +28,7 @@ public class BlockManager2 extends BlockManager implements GameObject {
 			// r = 3;
 			r += 3;
 			for (int j = 0; j < r; j++) {
-				blocks[j][i] = true;
+				blocks[j][i] = Type.getType(rnd.nextInt(5));
 			}
 		}
 	}
@@ -45,7 +45,8 @@ public class BlockManager2 extends BlockManager implements GameObject {
 
 		for (int i = 0; i < Assets.BIC; i++) {
 			for (int j = 0; j < Assets.BIR; j++) {
-				if (blocks[i][j]) {
+				if (blocks[i][j] != null) {
+					g.setColor(blocks[i][j].getColor());
 					g.fillRect(j * Assets.bSizeW + 1, i * Assets.bSizeH + 1,
 							Assets.bSizeW - 1, Assets.bSizeH - 1);
 				}
@@ -62,8 +63,8 @@ public class BlockManager2 extends BlockManager implements GameObject {
 		int j = x / Assets.bSizeW;
 		int i = y / Assets.bSizeH;
 		try {
-			if (blocks[i][j]) {
-				blocks[i][j] = false;
+			if (blocks[i][j]!=null) {
+				blocks[i][j] = null;
 				check();
 				return true;
 			}
@@ -84,8 +85,8 @@ public class BlockManager2 extends BlockManager implements GameObject {
 		int j = x / Assets.bSizeW;
 		int i = y / Assets.bSizeH;
 		try {
-			if (blocks[i][j]) {
-				blocks[i][j] = false;
+			if (blocks[i][j]!=null) {
+				blocks[i][j] = null;
 				check();
 				return true;
 			}
@@ -101,12 +102,20 @@ public class BlockManager2 extends BlockManager implements GameObject {
 	 */
 	public void addLine() {
 		try {
+			Random rnd = new Random();
 			for (int i = 0; i < Assets.BIR; i++) {
 				int j = 0;
-				while (blocks[j++][i])
-					;
-
-				blocks[j - 1][i] = true;
+				
+				if( blocks[Assets.BIC -1][i] != null) Assets.engine.gameOver();
+				
+				j = Assets.BIC-1;
+				
+				for(int k = j ; k > 0; k --){
+					blocks[k][i] = blocks[k-1][i];
+				}
+				
+				
+				blocks[0][i] = Type.getType(rnd.nextInt(5));
 			}
 		} catch (ArrayIndexOutOfBoundsException e) {
 			Assets.engine.gameOver();
@@ -125,34 +134,34 @@ public class BlockManager2 extends BlockManager implements GameObject {
 
 		boolean[][] isConnected = new boolean[Assets.BIC][Assets.BIR];
 		for (int i = 0; i < isConnected[0].length; i++)
-			isConnected[0][i] = blocks[0][i];
+			isConnected[0][i] = blocks[0][i]!=null;
 
 		for (int j = 0; j < isConnected[0].length; j++) {
 			for (int i = 0; i < isConnected.length; i++) {
 				if (isConnected[i][j]) {
 					try {
-						if (blocks[i + 1][j])
+						if (blocks[i+1][j]!=null)
 							isConnected[i + 1][j] = true;
 					} catch (IndexOutOfBoundsException e) {
 
 					}
 
 					try {
-						if (blocks[i - 1][j])
+						if (blocks[i-1][j]!=null)
 							isConnected[i - 1][j] = true;
 					} catch (IndexOutOfBoundsException e) {
 
 					}
 
 					try {
-						if (blocks[i][j + 1])
+						if (blocks[i][j+1]!=null)
 							isConnected[i][j + 1] = true;
 					} catch (IndexOutOfBoundsException e) {
 
 					}
 
 					try {
-						if (blocks[i][j - 1])
+						if (blocks[i][j-1]!=null)
 							isConnected[i][j - 1] = true;
 					} catch (IndexOutOfBoundsException e) {
 
@@ -161,14 +170,19 @@ public class BlockManager2 extends BlockManager implements GameObject {
 			}
 		}
 
-		blocks = isConnected;
+		for (int i = 0; i < isConnected.length; i++)
+			for (int j = 0; j < isConnected[i].length; j++)
+				if (!isConnected[i][j])
+					blocks[i][j] = null;
+
+		// blocks = isConnected;
 	}
 
 	private void winCheck() {
 		boolean win = true;
-		for (boolean[] boo : blocks)
-			for (boolean b : boo)
-				if (b)
+		for (Type[] boo : blocks)
+			for (Type b : boo)
+				if (b != null)
 					win = false;
 		if (win)
 			Assets.engine.win();
