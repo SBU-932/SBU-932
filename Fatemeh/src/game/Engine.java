@@ -5,12 +5,12 @@ import java.awt.image.BufferedImage;
 
 import object.GameObj;
 import object.block.Block;
-import object.display.Shelik;
+import object.display.Fire;
 import window.Frame;
 
 public class Engine {
 	
-	public boolean start = true;
+	public boolean start = true;//If the game is running
 	
 	
 	public void Maingame(){
@@ -30,31 +30,45 @@ public class Engine {
 		
 	}
 	
+
+	/*
+	 * This method is run every frame for drawing purpose for drawing on game
+	 * panel
+	 */
+	
 	private void draw() {
-		// TODO Auto-generated method stub
+		//set background
 		State.getInstance().g.setColor(Color.PINK);
-		State.getInstance().g.fillRect(0, 0,State.getInstance().width
-				,State.getInstance().heigth);
+		State.getInstance().g.fillRect(0, 0,State.getInstance().length
+				,State.getInstance().width);
 		
-		
+		// BEGIN: draw on g2
 		for(GameObj go: State.getInstance().objects)
 			go.draw(State.getInstance().g);
 		
+		// END: draw on g2
 		State.getInstance().Panel.getGraphics().drawImage(State.getInstance().buffered
 				, 0, 0, State.getInstance().Panel);
 	}
+	
+	/*
+	 * this method run before game begin
+	 */
 
 	private void init(){
 		Frame frame = new Frame();
 		settupBuffered();
 		Block b = new Block();
 		State.getInstance().objects.add(b);
-		Shelik s = new Shelik(400,500,25,30,0);
+		Fire s = new Fire(400,500,25,30,0);
 		State.getInstance().objects.add(s);
 		
 		
 	}
 	
+	/*
+	 * this method is run every frame
+	 */
 	private void update(){
 		//TODO
 		for(GameObj go: State.getInstance().objects)
@@ -72,13 +86,19 @@ public class Engine {
 		State.getInstance().remove.clear();
 	}
 	
+	/*
+	 * this method is for end of game
+	 */
 	private void end(){
 		//TODO
 	}
 	
+	/*
+	 * creates image and sets graphic
+	 */
 	private void settupBuffered(){
-		State.getInstance().buffered = new BufferedImage(State.getInstance().width,
-				State.getInstance().heigth,BufferedImage.TYPE_INT_RGB);
+		State.getInstance().buffered = new BufferedImage(State.getInstance().length,
+				State.getInstance().width,BufferedImage.TYPE_INT_RGB);
 		State.getInstance().g = State.getInstance().buffered.getGraphics();
 	}
 	

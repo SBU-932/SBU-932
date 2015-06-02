@@ -14,45 +14,57 @@ import object.GameObj;
  * @author M
  *
  */
-public class Shelik implements GameObj {
+public class Fire implements GameObj {
 
-	int x, y, l, r;
-	boolean shoot = true;
-	double alpha, speed = 0.005;
-
-	public Shelik(int x, int y, int length, int r, double alpha) {
+	int x, y, l, r;// Position, radius and length of weapon
+	boolean shoot = true; // If it has shot
+	double theta,//degree of gun
+	speed = 0.005;//speed of gun moving
+	
+	/*
+	 * fixing every thing
+	 */
+	public Fire(int x, int y, int length, int r, double theta) {
 		// TODO Auto-generated constructor stub
 		this.x = x;
 		this.y = y;
 		this.l = length;
 		this.r = r;
-		this.alpha = alpha;
+		this.theta = theta;
 	}
-
+	
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
+		//set degree to input
 		if (State.getInstance().button[0]) {
-			alpha -= speed * State.getInstance().delta;
+			theta -= speed * State.getInstance().delta;
 		}
 
 		if (State.getInstance().button[1]) {
-			alpha += speed * State.getInstance().delta;
+			theta += speed * State.getInstance().delta;
 		}
-
+		
+		//shoot
 		if (State.getInstance().button[2]) {
+			//if space button push fire
 			if (shoot) {
 				shoot = false;
-				// TODO: shelik kn
-				Ball ball = new Ball(5, x + r / 2, y + r / 2, alpha);
-				State.getInstance().add.add(ball);
+				// TODO: Fire kn
+				Shot Shot = new Shot(5, x + r / 2, y + r / 2, theta);
+				State.getInstance().add.add(Shot);
 				System.out.println("Shooooooooot");
 			}
 		} else {
 			shoot = true;
 		}
 	}
-
+	
+	/*
+	 * (non-Javadoc)
+	 * @see object.GameObj#draw(java.awt.Graphics)
+	 * draw gun
+	 */
 	@Override
 	public void draw(Graphics g) {
 		// TODO Auto-generated method stub
@@ -61,15 +73,12 @@ public class Shelik implements GameObj {
 
 		g.setColor(Color.CYAN);
 		g.drawLine(x + r / 2, y + r / 2, x + r / 2
-				+ (int) (l * Math.cos(alpha)),
-				y + r / 2 + (int) (l * Math.sin(alpha)));
-
+				+ (int) (l * Math.cos(theta)),
+				y + r / 2 + (int) (l * Math.sin(theta)));
 	}
 
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
-
 	}
-
 }

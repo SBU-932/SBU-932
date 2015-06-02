@@ -25,20 +25,20 @@ public class State {
 		// ' ' ->2
 	public boolean []button;
 	public window.Panel Panel;
-	public BufferedImage buffered;
-	public Graphics g;
-	public  int width=800;
-	public int heigth=600;
+	public BufferedImage buffered;// Game is draw here
+	public Graphics g;// The graphic for drawing on game
+	public  int length=800;//length of game screen
+	public int width=600;//width of game screen
 	public double delta;
 	public ArrayList<GameObj>objects = new ArrayList<GameObj>();
 	public ArrayList<GameObj>add = new ArrayList<GameObj>();
 	public ArrayList<GameObj>remove = new ArrayList<GameObj>();
-	public boolean [][] block;
-	public int row;
-	public int clom;
-	public int Nr=25;
-	public int Nc=25;
-	public Block blocks;
+	public boolean [][] block;//keep block
+	public int row;//length of block
+	public int clom;//width of block
+	public int Nr=25;//number of blocks in one row
+	public int Nc=25;//number of blocs in one column
+	public Block blocks;//saving blocks pointer for easy access
 
 
 	

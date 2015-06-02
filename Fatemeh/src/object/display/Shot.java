@@ -7,14 +7,16 @@ import java.awt.Graphics;
 
 import object.GameObj;
 
-public class Ball implements GameObj {
-	int r;
-	double x,y;
-	double alpha;
-	double speed = 1;
+public class Shot implements GameObj {
+	int r;//radius
+	double x,y;//position
+	double alpha;//degree of drop
+	double speed = 1;//speed of drop
 	
-
-	public Ball(int r,double x,double y,double alpha) {
+	/*
+	 * fixing every thing
+	 */
+	public Shot(int r,double x,double y,double alpha) {
 		// TODO Auto-generated constructor stub
 		this.r =r;
 		this.x=x;
@@ -26,21 +28,30 @@ public class Ball implements GameObj {
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
+		
+		//place of Shot  in per delta
 		x+=speed*Math.cos(alpha)*State.getInstance().delta;
 		y+=speed*Math.sin(alpha)*State.getInstance().delta;
 		
-		if( x <0 || y<0 || x> State.getInstance().width || y> State.getInstance().heigth){
-			
+		//check position of Shot
+		if( x <0 || y<0 || x> State.getInstance().length || y> State.getInstance().width){
 			goout();
 		}
-		
 	}
+	
 
+	/*
+	 * This is called when a Shot is went out of window
+	 */
 	private void goout() {
 		// TODO Auto-generated method stub
-		
 	}
-
+	
+	/*
+	 * (non-Javadoc)
+	 * @see object.GameObj#draw(java.awt.Graphics)
+	 * this method draw Shot
+	 */
 	@Override
 	public void draw(Graphics g) {
 		// TODO Auto-generated method stub
