@@ -47,6 +47,10 @@ public class Panel extends JPanel {
 				Restart();
 			}
 
+<<<<<<< HEAD
+=======
+		
+>>>>>>> 1df925cc5ed7f2f9a481ec2d8518a5ae41cbc69f
 		});
 		setLayout(null);
 		add(button);
@@ -60,9 +64,19 @@ public class Panel extends JPanel {
 				// TODO Auto-generated method stub
 				Quit();
 			}
+<<<<<<< HEAD
 		});
 		add(button1);
 
+=======
+
+		
+		});
+		add(button1);
+		
+		
+		
+>>>>>>> 1df925cc5ed7f2f9a481ec2d8518a5ae41cbc69f
 	}
 	
 	private void Quit() {
@@ -139,6 +153,11 @@ public class Panel extends JPanel {
 
 		ipm.put(KeyStroke.getKeyStroke("pressed SPACE"), "ps");
 		am.put("ps", press);
+	}
+	
+	private void Restart() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	private void Restart() {
