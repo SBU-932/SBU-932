@@ -21,17 +21,17 @@ public class Blocks implements GameObj {
         State.instance.blocks = this;
 
         // calculate length and width of block
-        State.instance.block_lenght = (State.instance.length / State.instance.column_count) + 10 ;
-        State.instance.block_width = (State.instance.width / State.instance.row_count) - 5;
-
+        State.instance.block_lenght = (State.instance.length / State.instance.column_count)  ;
+        State.instance.block_width = (State.instance.width / State.instance.row_count) ;
+        State.instance.radius =(State.instance.length / State.instance.column_count)-2;
         // meghdar dehi be array block
         State.instance.block = new boolean[State.instance.column_count][State.instance.row_count];
 
 	Random Rn = new Random();
 
 	for (int i = State.instance.column_count - 1 ; i >= 0 ; i--) {
-            int rn = Rn.nextInt(State.instance.block_width);
-            rn += 3;
+            int rn = Rn.nextInt(State.instance.block_width-5);
+//            rn += 3;
             for (int j = 0; j < rn; j++) {
 		State.instance.block[i][j] = true;
             }
@@ -62,7 +62,7 @@ public class Blocks implements GameObj {
             for (int j = State.instance.row_count - 1; j >= 0; j--) {
 		g.setColor(color[i][j]);
                 if (State.instance.block[i][j])
-                    g.fillRect(i * State.instance.block_lenght + 1,j * State.instance.block_width + 1,State.instance.block_lenght - 1,State.instance.block_width - 1);
+                    g.fillOval(i * State.instance.block_lenght + 1,j * State.instance.block_width + 1,State.instance.block_lenght - 1,State.instance.block_width - 1);
             }
 	}
     }

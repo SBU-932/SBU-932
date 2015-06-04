@@ -52,7 +52,7 @@ public class Arrow implements GameObj {
 	if (shoot) {
             shoot = false;
             // TODO: Fire kn
-            Shoot ball = new Shoot(10 , x + r / 2, y + r / 2, theta);
+            Shoot ball = new Shoot(State.instance.radius , x + r / 2, y + r / 2, theta);
             State.instance.add.add(ball);
             System.out.println("Shoot!!");
         }
@@ -71,7 +71,7 @@ public class Arrow implements GameObj {
     public void draw(Graphics g) {
 		// TODO Auto-generated method stub
 	g.setColor(Color.LIGHT_GRAY);
-	g.fillArc(x, y, r, r, 0, 180);
+	g.fillArc(x, y, r+5, r+5, 0, 180);
 
 	g.setColor(Color.DARK_GRAY);
 	g.drawLine(x + r / 2, y + r / 2, x + r / 2+ (int) (l * Math.cos(theta)),y + r / 2 + (int) (l * Math.sin(theta)));
