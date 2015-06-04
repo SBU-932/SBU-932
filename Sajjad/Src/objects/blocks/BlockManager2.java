@@ -78,23 +78,29 @@ public class BlockManager2 extends BlockManager implements GameObject {
 	/*
 	 * On target for Bullet 2
 	 */
-	public boolean onTarget(Bullet2 b) {
+	public int onTarget(Bullet2 b) {
 		// TODO: improve for Bullet2 (if nec..)
 		int x = (int) b.getX();
 		int y = (int) b.getY();
 		int j = x / Assets.bSizeW;
 		int i = y / Assets.bSizeH;
 		try {
-			if (blocks[i][j]!=null) {
+			if (blocks[i][j]!=null && blocks[i][j].getColor().equals(b.getC())) {
 				blocks[i][j] = null;
+				
+				//TODO: check neighbours
+				
 				check();
-				return true;
+				return 1;
+			} 
+			if (blocks[i][j]!=null){
+				return 2;
 			}
 		} catch (IndexOutOfBoundsException e) {
 
 		}
 
-		return false;
+		return 0;
 	}
 
 	/*

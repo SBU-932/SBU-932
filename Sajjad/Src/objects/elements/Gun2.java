@@ -7,11 +7,16 @@ import java.util.Random;
 
 import engine.Assets;
 import objects.GameObject;
+import objects.blocks.Type;
 
 //TODO: Refine!
 public class Gun2 implements GameObject {
 	int x, y, r, l;// Position, radius and length of weapon
 	Color c, c2;// Color of tank and the gun
+
+	Color b1, b2;// Color of next balls
+
+	private Random rnd;
 
 	int modf; // Modifier used for gun's position to be in center
 
@@ -31,7 +36,19 @@ public class Gun2 implements GameObject {
 		this.c = c;
 		this.c2 = c2;
 
+		b1 = rndColor();
+		b2 = rndColor();
+
 		modf = (int) (r / 2);
+	}
+
+	/*
+	 * creates a random color
+	 */
+	private Color rndColor() {
+		rnd = new Random();
+
+		return Type.getType(rnd.nextInt(5)).getColor();
 	}
 
 	@Override
@@ -57,9 +74,12 @@ public class Gun2 implements GameObject {
 				// of
 				// press, so shoot!
 
-				Bullet2 b = new Bullet2(x + modf, y + modf, 5, 0.5, angl);
+				Bullet2 b = new Bullet2(x + modf, y + modf, 5, 0.5, angl, b1);
 				Assets.engine.add(b);
 
+				b1 = b2;
+				b2 = rndColor();
+				
 				Assets.canShoot = false;// You can shoot one bullet at a time
 
 			}
@@ -77,6 +97,12 @@ public class Gun2 implements GameObject {
 		g.setColor(c);
 		// g.drawArc(x, y, r, r, 0, 360);
 		g.fillArc(x, y, r, r, 0, 360);
+
+		// Draw waiting line
+		g.setColor(b1);
+		g.fillArc(x+3*r, y, r, r, 0, 360);
+		g.setColor(b2);
+		g.fillArc(x+5*r, y, r, r, 0, 360);
 
 		g.setColor(c2);
 		double s = Math.sin(Math.toRadians(angl));

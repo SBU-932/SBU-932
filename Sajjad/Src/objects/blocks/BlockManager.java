@@ -77,8 +77,8 @@ public class BlockManager implements GameObject {
 	/*
 	 * On target for Bullet 2
 	 */
-	public boolean onTarget(Bullet2 b) {
-		return false;
+	public int onTarget(Bullet2 b) {
+		return 0;
 	}
 
 	/*

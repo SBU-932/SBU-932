@@ -11,19 +11,25 @@ public class Bullet2 implements GameObject {
 	double x, y;// position
 	int r;// radius
 	int count = 0; // Mirror count
-	int maxCount = 3;//Maximum mirror count
-	
+	int maxCount = 3;// Maximum mirror count
+
 	double alpha, speed; // the degree and speed
 
 	int modf;// This is to draw aafrom center
 
-	public Bullet2(int x, int y, int r, double speed, double alpha) {
+	Color c;
+
+	public Color getC() {
+		return c;
+	}
+
+	public Bullet2(int x, int y, int r, double speed, double alpha, Color c) {
 		this.x = x;
 		this.y = y;
 		this.r = r;
 		this.speed = speed;
 		this.alpha = Math.toRadians(alpha);
-
+		this.c = c;
 		modf = r / 2;
 	}
 
@@ -36,9 +42,14 @@ public class Bullet2 implements GameObject {
 			out();
 		} else if (x <= 0 || x >= Assets.picW) {
 			mirror();
-		} else if (Assets.blockManager.onTarget(this)) {
-			System.out.println("ON TARGET!");
-			hit();
+		} else {
+			int tmp = Assets.blockManager.onTarget(this);
+			if (tmp > 0) {
+				if(tmp == 1)
+					hit();
+				if(tmp == 2)
+					out();
+			}
 		}
 	}
 
@@ -46,17 +57,18 @@ public class Bullet2 implements GameObject {
 	 * Mirrors the movement
 	 */
 	private void mirror() {
-		count ++ ;
+		count++;
 		alpha = Math.PI - alpha;
 		System.out.println(alpha);
 		if (Math.abs(alpha - Math.PI) < 1e-7 || Math.abs(alpha - 0) < 1e-7)
 			out();
-		if(count > maxCount) out();
+		if (count > maxCount)
+			out();
 	}
 
 	@Override
 	public void draw(Graphics g) {
-		g.setColor(Color.BLACK);
+		g.setColor(c);
 		g.fillArc((int) x + modf, (int) y + modf, r, r, 0, 360);
 	}
 
