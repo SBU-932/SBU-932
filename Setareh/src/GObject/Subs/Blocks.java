@@ -15,6 +15,7 @@ import static jdk.nashorn.internal.objects.NativeMath.random;
 
 public class Blocks implements GameObj {
 
+    Color[][] color= new Color[State.instance.column_count][State.instance.row_count];
     public Blocks() {
         // TODO Auto-generated constructor stub
         State.instance.blocks = this;
@@ -28,13 +29,19 @@ public class Blocks implements GameObj {
 
 	Random Rn = new Random();
 
-	for (int i = State.instance.column_count - 1; i >= 0; i--) {
+	for (int i = State.instance.column_count - 1 ; i >= 0 ; i--) {
             int rn = Rn.nextInt(State.instance.block_width);
             rn += 3;
             for (int j = 0; j < rn; j++) {
 		State.instance.block[i][j] = true;
             }
 	}
+        
+        for(int i = 0 ; i < State.instance.column_count ; i++){
+            for(int j = 0 ; j < State.instance.row_count ; j++){
+                 color[i][j]=set_rand_color();
+            }
+        }
     }
 
     @Override
@@ -53,7 +60,7 @@ public class Blocks implements GameObj {
 
 	for (int i = State.instance.column_count - 1; i >= 0; i--) {
             for (int j = State.instance.row_count - 1; j >= 0; j--) {
-		g.setColor(set_rand_color());
+		g.setColor(color[i][j]);
                 if (State.instance.block[i][j])
                     g.fillRect(i * State.instance.block_lenght + 1,j * State.instance.block_width + 1,State.instance.block_lenght - 1,State.instance.block_width - 1);
             }
@@ -73,22 +80,22 @@ public class Blocks implements GameObj {
 	return false;
     }
     private  Color set_rand_color(){
-        // NOTE: Usually this should be a field rather than a method
-        // variable so that it is not re-seeded every call.
+        
         Random rand = new Random();
-
-        // nextInt is normally exclusive of the top value,
-        // so add 1 to make it inclusive
-        int randomNum = rand.nextInt(3)+1 ;
+        int randomNum = rand.nextInt(5)+1 ;
         switch(randomNum){
             case(1):
-                return Color.BLACK;
+                return Color.RED;
             case(2):
-                return Color.DARK_GRAY;
+                return Color.GREEN;
             case(3):
-                return Color.LIGHT_GRAY;
+                return Color.YELLOW;
+            case(4):
+                return Color.MAGENTA;
+            case(5):
+                return Color.CYAN;
         }
-        return Color.BLACK;
+        return Color.WHITE;
     }
     
 
