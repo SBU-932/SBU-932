@@ -7,8 +7,8 @@ package State;
  */
 
 
-import GObject.Arrow;
-import GObject.GameObject;
+import GObjects.subs.Arrow;
+import GObjects.GameObject;
 import game.Play;
 import java.awt.Color;
 import java.awt.Graphics;

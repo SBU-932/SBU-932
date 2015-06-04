@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GObject;
+package GObjects.subs;
 
+import GObjects.GameObject;
 import State.State;
 import java.awt.Color;
 import java.awt.Graphics;

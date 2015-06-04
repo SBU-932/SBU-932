@@ -5,7 +5,7 @@
  */
 package State;
 
-import GObject.GameObject;
+import GObjects.GameObject;
 import game.Background;
 import java.util.ArrayList;
 

@@ -1,0 +1,25 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package GameMain;
+
+import Controler.Engine;
+
+/**
+ *
+ * @author Setareh
+ */
+public class Game {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        Engine first =new Engine();
+        first.Playgame();
+// TODO code application logic here
+    }
+    
+}

@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game;
+package GameMain;
 
-import State.State;
+import Controler.State;
 import javax.swing.JPanel;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -69,9 +69,9 @@ public class Background extends JPanel{
             {
                 System.out.println(text + " SPACE");
                 if(text=="keyPressed")
-                    State.instance.button[0]=true;
+                    State.instance.button[2]=true;
                 else
-                    State.instance.button[0]=false;
+                    State.instance.button[2]=false;
             }
          }
 

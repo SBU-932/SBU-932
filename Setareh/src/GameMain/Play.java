@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game;
+package GameMain;
 
-import State.State;
+import Controler.State;
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
@@ -100,7 +100,7 @@ public class Play extends javax.swing.JFrame {
     }//GEN-LAST:event_restart_jButtonActionPerformed
 
     private void quit_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quit_jButtonActionPerformed
-        this.dispose();
+        this.setVisible(false);//dorostesh kon!!
     }//GEN-LAST:event_quit_jButtonActionPerformed
 
     /**
