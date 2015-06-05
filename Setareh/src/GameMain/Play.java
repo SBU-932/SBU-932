@@ -5,6 +5,7 @@
  */
 package GameMain;
 
+import Controler.Engine;
 import Controler.State;
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
@@ -96,7 +97,9 @@ public class Play extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void restart_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restart_jButtonActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+        Engine first =new Engine();
+        first.Playgame();
     }//GEN-LAST:event_restart_jButtonActionPerformed
 
     private void quit_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quit_jButtonActionPerformed

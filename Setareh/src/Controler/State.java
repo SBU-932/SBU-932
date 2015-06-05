@@ -37,7 +37,7 @@ public class State {
 	public int column_count = 25;//number of columns
 	public int row_count = 25;//number of rows
 	public Blocks blocks;
-
+        public int radius;
 
 	
 	

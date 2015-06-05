@@ -71,7 +71,7 @@ public class Shoot implements GameObj {
 	public void draw(Graphics g) {
             // TODO Auto-generated method stub
             g.setColor(color);
-            g.fillOval((int)x, (int)y, r, r);
+            g.fillOval((int)x, (int)y, r-2, r-2);
 		
 		
 		
