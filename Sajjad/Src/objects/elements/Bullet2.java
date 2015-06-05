@@ -60,8 +60,6 @@ public class Bullet2 implements GameObject {
 		count++;
 		alpha = Math.PI - alpha;
 		System.out.println(alpha);
-		if (Math.abs(alpha - Math.PI) < 1e-7 || Math.abs(alpha - 0) < 1e-7)
-			out();
 		if (count > maxCount)
 			out();
 	}

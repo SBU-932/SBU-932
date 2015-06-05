@@ -2,6 +2,7 @@ package objects.blocks;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.ArrayList;
 import java.util.Random;
 
 import engine.Assets;
@@ -42,7 +43,7 @@ public class BlockManager2 extends BlockManager implements GameObject {
 	public void draw(Graphics g) {
 
 		g.setColor(Color.BLUE);
-
+		
 		for (int i = 0; i < Assets.BIC; i++) {
 			for (int j = 0; j < Assets.BIR; j++) {
 				if (blocks[i][j] != null) {
@@ -88,7 +89,10 @@ public class BlockManager2 extends BlockManager implements GameObject {
 			if (blocks[i][j]!=null && blocks[i][j].getColor().equals(b.getC())) {
 				blocks[i][j] = null;
 				
-				//TODO: check neighbours
+				//BEGIN: Check neigbours
+				
+				
+				//END: Check neighbours
 				
 				check();
 				return 1;
