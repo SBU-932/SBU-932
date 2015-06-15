@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 import object.GameObj;
 import object.block.Block;
@@ -23,7 +24,7 @@ public class Engine {
 
 	public void Maingame() {
 		init();
-
+		start = true;
 		long currentTime = System.nanoTime();
 		while (start) {
 			// TODO
@@ -62,7 +63,8 @@ public class Engine {
 	 */
 
 	private void init() {
-		Frame frame = new Frame();
+		if (State.getInstance().frame == null)
+			new Frame();
 		settupBuffered();
 		Block b = new Block();
 		State.getInstance().objects.add(b);
@@ -108,7 +110,9 @@ public class Engine {
 	public void end() {
 		// TODO
 		State.getInstance().canShot = false;
-		JOptionPane.showMessageDialog(null, "Game Over");
+		// JOptionPane.showMessageDialog(State.getInstance().frame, "Game Over",
+		// "Game Over",
+		// JOptionPane.OK_OPTION);
 	}
 
 	/*
@@ -124,6 +128,25 @@ public class Engine {
 	public void win() {
 		// TODO Auto-generated method stub
 		JOptionPane.showMessageDialog(null, "You win!");
+	}
+
+	public void reset() {
+		// TODO Auto-generated method stub
+		start = false;
+		State.getInstance().objects.clear();
+
+		Engine tmp = new Engine();
+		SwingUtilities.invokeLater(new Runnable() {
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+
+				tmp.Maingame();
+			}
+
+		});
+
 	}
 
 }

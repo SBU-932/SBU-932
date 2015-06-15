@@ -1,5 +1,7 @@
 package window;
 
+import game.State;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -141,6 +143,6 @@ public class Panel extends JPanel {
 	
 	private void Restart() {
 		// TODO Auto-generated method stub
-		
+		State.getInstance().engine.reset();
 	}
 }

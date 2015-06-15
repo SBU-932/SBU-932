@@ -130,5 +130,9 @@ public class Shot implements GameObj {
 		// TODO Auto-generated method stub
 
 	}
+	
+	public double getAlpha() {
+		return alpha;
+	}
 
 }

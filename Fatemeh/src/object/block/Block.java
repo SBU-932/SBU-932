@@ -83,6 +83,39 @@ public class Block implements GameObj {
 
 		int x = ((int) shot.getX()) / State.getInstance().row;
 		int y = ((int) shot.getY()) / State.getInstance().clom;
+		
+		try{
+			if(State.getInstance().block[x][y]!=null){
+				Colour p = null;
+				for (int i = 0; i < 5; i++)
+					if (shot.getcolor().equals(Colour.getType(i).getColor()))
+						p = Colour.getType(i);
+				double alpha = shot.getAlpha();
+
+				int deltaX = (int) (Math.cos(alpha) * 2);
+				int deltaY = (int) (Math.sin(alpha) * 2);
+				
+				if (x - deltaY > State.getInstance().block.length || y - deltaX > State.getInstance()
+						.block[x].length)
+					State.getInstance().engine.end();
+
+				State.getInstance().block[x - deltaY][y - deltaX] = p;
+				x -= deltaY;
+				y -= deltaX;
+				while (State.getInstance().block[x - 1][y] == null && State.getInstance()
+						.block[x][y - 1] == null
+						&& State.getInstance().block[x][y + 1] == null && State.getInstance()
+						.block[x + 1][y] == null) {
+					if(x == 0) break;
+					x--;
+					State.getInstance().block[x+1][y] = null;
+					State.getInstance().block[x][y] = p;
+				}
+			}
+			}catch(IndexOutOfBoundsException e){
+				
+			}
+		
 		if (x >= 0 & y >= 0 & x < State.getInstance().Nr
 				& y < State.getInstance().Nc) {
 			if (State.getInstance().block[x][y] != null
