@@ -79,7 +79,7 @@ public class Gun2 implements GameObject {
 
 				b1 = b2;
 				b2 = rndColor();
-				
+
 				Assets.canShoot = false;// You can shoot one bullet at a time
 
 			}
@@ -100,9 +100,9 @@ public class Gun2 implements GameObject {
 
 		// Draw waiting line
 		g.setColor(b1);
-		g.fillArc(x+3*r, y, r, r, 0, 360);
+		g.fillArc(x + 3 * r, y, r, r, 0, 360);
 		g.setColor(b2);
-		g.fillArc(x+5*r, y, r, r, 0, 360);
+		g.fillArc(x + 5 * r, y, r, r, 0, 360);
 
 		g.setColor(c2);
 		double s = Math.sin(Math.toRadians(angl));

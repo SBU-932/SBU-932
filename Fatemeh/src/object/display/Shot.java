@@ -14,17 +14,23 @@ public class Shot implements GameObj {
 	double speed = 1;//speed of drop
 	int counter=0;//mirror counter
 	int max = 3;//max of mirror
+	Color col;
 	
 	/*
 	 * fixing every thing
 	 */
-	public Shot(int r,double x,double y,double alpha) {
+	public Shot(int r,double x,double y,double alpha, Color col) {
 		// TODO Auto-generated constructor stub
 		this.r =r;
 		this.x=x;
 		this.y=y;
 		this.alpha=alpha;
+		this.col=col;
 		
+	}
+	
+	public Color getcolor(){
+		return col;
 	}
 	
 	public double getX() {
@@ -47,7 +53,7 @@ public class Shot implements GameObj {
 		if( y<0 || y> State.getInstance().width){
 			goout();
 		}
-		if(x <=0|| x>=State.getInstance().width){
+		if(x <=0|| x>=State.getInstance().length){
 			mirror();
 		}
 		

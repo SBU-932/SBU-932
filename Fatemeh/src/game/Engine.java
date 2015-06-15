@@ -108,6 +108,7 @@ public class Engine {
 	 */
 	public void end(){
 		//TODO
+		State.getInstance().canShot=false;
 		JOptionPane.showMessageDialog(null, "Game Over");
 	}
 	

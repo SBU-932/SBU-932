@@ -11,7 +11,7 @@ import object.GameObj;
 import object.display.Shot;
 
 public class Block implements GameObj {
-
+	 private Random Rn;
 	public Block() {
 		// TODO Auto-generated constructor stub
 		State.getInstance().blocks = this;
@@ -26,7 +26,7 @@ public class Block implements GameObj {
 		State.getInstance().block = new Colour[State.getInstance().Nr][State
 				.getInstance().Nc];
 
-		Random Rn = new Random();
+		 Rn = new Random();
 
 		for (int i = State.getInstance().Nr - 1; i >= 0; i--) {
 			int rn = Rn.nextInt(State.getInstance().Nr-10);
@@ -100,7 +100,7 @@ public class Block implements GameObj {
 					break forloop;
 				}
 			}
-			State.getInstance().block[i][j - 1] = null;
+			State.getInstance().block[i][j - 1] = Colour.getType(Rn.nextInt(5));
 		}
 		State.getInstance().passTime = 0;
 		State.getInstance().failcount = 0;
