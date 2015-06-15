@@ -58,10 +58,20 @@ public class Block implements GameObj {
 			for (int j = State.getInstance().Nc - 1; j >= 0; j--) {
 				if (State.getInstance().block[i][j] != null) {
 					g.setColor(State.getInstance().block[i][j].getColor());
-					g.fillRect(i * State.getInstance().row + 1,
+					// g.fillRect(i * State.getInstance().row + 1,
+					// j * State.getInstance().clom + 1,
+					// State.getInstance().row - 1,
+					// State.getInstance().clom - 1);
+
+					// g.drawImage(State.getInstance().ball,
+					// i * State.getInstance().row + 1,
+					// j * State.getInstance().clom + 1,
+					// State.getInstance().block[i][j].getColor(), null);
+
+					g.fillArc(i * State.getInstance().row + 1,
 							j * State.getInstance().clom + 1,
 							State.getInstance().row - 1,
-							State.getInstance().clom - 1);
+							State.getInstance().clom - 1, 0, 360);
 
 				}
 
@@ -69,7 +79,7 @@ public class Block implements GameObj {
 		}
 	}
 
-	public boolean bump(Shot shot) {
+	public int bump(Shot shot) {
 
 		int x = ((int) shot.getX()) / State.getInstance().row;
 		int y = ((int) shot.getY()) / State.getInstance().clom;
@@ -125,15 +135,24 @@ public class Block implements GameObj {
 
 					remove.add(check.get(i));
 				}
-				for(int i = 0 ; i< remove.size();i++){
-					State.getInstance().block[remove.get(i).first]
-							[remove.get(i).second]=null;
-				}
-				
-				return true;
+
+				if (remove.size() > 1)
+					for (int i = 0; i < remove.size(); i++) {
+						State.getInstance().block[remove.get(i).first][remove
+								.get(i).second] = null;
+					}
+
+				return 0;// Hit
 			}
 		}
-		return false;
+		try {
+			if (State.getInstance().block[x][y] != null) {
+				return 1;// Hit wrong
+			}
+		} catch (IndexOutOfBoundsException e) {
+		}
+
+		return 2;// Nothing
 	}
 
 	private boolean has(ArrayList<object.block.Pair<Integer, Integer>> check,
@@ -161,7 +180,9 @@ public class Block implements GameObj {
 					break forloop;
 				}
 			}
-			State.getInstance().block[i][j - 1] = Colour.getType(Rn.nextInt(5));
+			for (j = j - 1; j >= 1; j--)
+				State.getInstance().block[i][j] = State.getInstance().block[i][j - 1];
+			State.getInstance().block[i][0] = Colour.getType(Rn.nextInt(5));
 		}
 		State.getInstance().passTime = 0;
 		State.getInstance().failcount = 0;

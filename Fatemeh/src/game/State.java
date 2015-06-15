@@ -3,6 +3,7 @@ package game;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -51,6 +52,8 @@ public class State {
 	public double passTime=0;//this count time that pass
 	public int Score=0;
 	public JFrame frame;
+	public Image ball;
+	
 	
 
 }

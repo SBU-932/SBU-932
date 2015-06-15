@@ -37,6 +37,8 @@ public class Assets {
 	public static final double timeLimit = 7000; // time limit of time passed
 
 	public static final int boffset = -15;
+
+	public static final double timeToRemove = 500;
 	
 	public static int score = 0;
 	public static JLabel jSore; // Shows the score

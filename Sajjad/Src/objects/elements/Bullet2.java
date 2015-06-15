@@ -76,8 +76,9 @@ public class Bullet2 implements GameObject {
 	private void out() {
 		Assets.engine.remove(this);
 		Assets.canShoot = true;
-
 		Assets.failCount++;
+		Assets.score--;
+		Assets.jSore.setText("Score: " + Assets.score);
 	}
 
 	/*
@@ -85,6 +86,7 @@ public class Bullet2 implements GameObject {
 	 */
 	private void hit() {
 		// System.out.println("Hit");
+		Assets.score++;
 		Assets.score++;
 		Assets.jSore.setText("Score: " + Assets.score);
 

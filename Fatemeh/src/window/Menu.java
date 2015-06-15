@@ -39,11 +39,24 @@ public class Menu extends JFrame {
 				}
 			
 		});
-		button.setBounds(174, 111, 97, 25);
+		button.setBounds(184, 111, 97, 25);
 		contentPane.add(button);
 		
-		JButton button_1 = new JButton("Start");
-		contentPane.add(button_1, BorderLayout.CENTER);
+		JButton button_1 = new JButton("Level2");
+		button.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				level2();
+			}
+		});
+		button_1.setBounds(144, 111, 97, 25);
+		contentPane.add(button_1);
+	}
+	protected void level2() {
+		// TODO Auto-generated method stub
+		
 	}
 	private void Level1() {
 		// TODO Auto-generated method stub
