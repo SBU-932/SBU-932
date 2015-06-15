@@ -125,13 +125,11 @@ public class Block implements GameObj {
 
 					remove.add(check.get(i));
 				}
+				return true;
 			}
-			
-			
-			
-			return true;
+
 		}
-		
+
 		return false;
 	}
 

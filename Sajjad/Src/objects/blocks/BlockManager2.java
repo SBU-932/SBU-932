@@ -13,7 +13,9 @@ import objects.elements.Bullet2;
 public class BlockManager2 extends BlockManager implements GameObject {
 
 	private Type[][] blocks;// This holds the blocks
-
+	public ArrayList<Pair<Integer, Integer>> toRemove = new ArrayList<>();
+	boolean falsed = false; // If I have falsed canshoot
+	
 	public BlockManager2() {
 		Assets.blockManager = this;
 
@@ -37,6 +39,20 @@ public class BlockManager2 extends BlockManager implements GameObject {
 	@Override
 	public void update() {
 		// TODO: check for fall
+		if(toRemove.size()>0){
+			Assets.canShoot = false;
+			falsed = true;
+		}else if(falsed){
+			falsed = false;
+			Assets.canShoot = true;
+		}
+		
+		if(toRemove.size()>0 && Assets.timePassed > Assets.timeToRemove){
+			Assets.timePassed = 0;
+			blocks[toRemove.get(0).first][toRemove.get(0).second]=null;
+			toRemove.remove(0);
+		}
+		
 	}
 
 	@Override
@@ -111,6 +127,13 @@ public class BlockManager2 extends BlockManager implements GameObject {
 				blocks[i - deltaY][j - deltaX] = p;
 				i -= deltaY;
 				j -= deltaX;
+				while (blocks[i - 1][j] == null && blocks[i][j - 1] == null
+						&& blocks[i][j + 1] == null && blocks[i + 1][j] == null) {
+					if(i == 0) break;
+					i--;
+					blocks[i+1][j] = null;
+					blocks[i][j] = p;
+				}
 			}
 		} catch (IndexOutOfBoundsException e) {
 		}
@@ -168,12 +191,10 @@ public class BlockManager2 extends BlockManager implements GameObject {
 					System.out.println("size of tochk " + tochk.size()); // Debug:
 				}
 
-				if (torm.size() <= 1)
+				if (torm.size() <= 2)
 					return 2;
-				for (int ni = 0; ni < torm.size(); ni++)
-					// Debug:
-					blocks[torm.get(ni).first][torm.get(ni).second] = null;
-
+				toRemove = torm;
+				Assets.canShoot = false;
 				// END: Check neighbours
 
 				check();
