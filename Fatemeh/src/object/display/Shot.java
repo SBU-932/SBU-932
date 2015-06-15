@@ -120,9 +120,10 @@ public class Shot implements GameObj {
 	@Override
 	public void draw(Graphics g) {
 		// TODO Auto-generated method stub
-		g.setColor(Color.WHITE);
-		g.fillRect((int) x, (int) y, r, r);
+		g.setColor(col);
+		// g.fillRect((int) x, (int) y, r, r);
 
+		g.fillArc((int) x, (int) y, r, r, 0, 360);
 	}
 
 	@Override
@@ -130,7 +131,7 @@ public class Shot implements GameObj {
 		// TODO Auto-generated method stub
 
 	}
-	
+
 	public double getAlpha() {
 		return alpha;
 	}

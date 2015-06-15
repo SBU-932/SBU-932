@@ -110,6 +110,9 @@ public class Engine {
 	public void end() {
 		// TODO
 		State.getInstance().canShot = false;
+		synchronized (State.getInstance()) {
+			State.getInstance().notifyAll();
+		}
 		// JOptionPane.showMessageDialog(State.getInstance().frame, "Game Over",
 		// "Game Over",
 		// JOptionPane.OK_OPTION);
@@ -133,20 +136,29 @@ public class Engine {
 	public void reset() {
 		// TODO Auto-generated method stub
 		start = false;
-		State.getInstance().objects.clear();
 
 		Engine tmp = new Engine();
-		SwingUtilities.invokeLater(new Runnable() {
+		Thread t = new Thread(new Runnable() {
 
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-
+				synchronized (State.getInstance()) {
+					try {
+						State.getInstance().wait();
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
 				tmp.Maingame();
+				State.getInstance().Panel.requestFocus();
+				State.getInstance().objects.clear();
 			}
 
 		});
 
+		t.start();
 	}
 
 }

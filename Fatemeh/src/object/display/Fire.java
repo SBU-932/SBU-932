@@ -64,7 +64,7 @@ public class Fire implements GameObj {
 			if (shoot&&State.getInstance().canShot) {
 				shoot = false;
 				// TODO: Fire kn
-				Shot Shot = new Shot(5, x + r / 2, y + r / 2, theta,c);
+				Shot Shot = new Shot(r, x + r / 2, y + r / 2, theta,c);
 				State.getInstance().add.add(Shot);
 				c = c1;
 				c1 = c2;
