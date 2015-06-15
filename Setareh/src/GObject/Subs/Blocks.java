@@ -57,7 +57,8 @@ public class Blocks implements GameObj {
     public void update() {
 	for(int j = 1 ; j < State.instance.row_count ; j++){
             for(int i = 0 ; i < State.instance.column_count ; i++){
-                if( i == 0 ){
+                if(State.instance.block[i][j]){
+                    if( i == 0 ){
                     if(!(State.instance.block[i][j-1] || State.instance.block[i+1][j])){
                         State.instance.block[i][j]=false;
                         State.instance.score++;
@@ -74,6 +75,7 @@ public class Blocks implements GameObj {
                         State.instance.block[i][j]=false;
                         State.instance.score++;
                     }
+            }
             }
         }	
     }
