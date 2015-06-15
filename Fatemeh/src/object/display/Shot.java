@@ -12,6 +12,8 @@ public class Shot implements GameObj {
 	double x,y;//position
 	double alpha;//degree of drop
 	double speed = 1;//speed of drop
+	int counter=0;//mirror counter
+	int max = 3;//max of mirror
 	
 	/*
 	 * fixing every thing
@@ -42,8 +44,11 @@ public class Shot implements GameObj {
 		y+=speed*Math.sin(alpha)*State.getInstance().delta;
 		
 		//check position of Shot
-		if( x <0 || y<0 || x> State.getInstance().length || y> State.getInstance().width){
+		if( y<0 || y> State.getInstance().width){
 			goout();
+		}
+		if(x <=0|| x>=State.getInstance().width){
+			mirror();
 		}
 		
 		if(State.getInstance().blocks.bump(this)){
@@ -51,6 +56,16 @@ public class Shot implements GameObj {
 			successful();
 			
 			
+		}
+	}
+
+private void mirror() {
+		// TODO Auto-generated method stub
+		counter ++;
+		alpha = Math.PI- alpha;
+		System.out.println(alpha);
+		if(counter >max){
+			goout();
 		}
 	}
 	
