@@ -1,5 +1,7 @@
 package window;
 
+import game.Engine;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
@@ -39,10 +41,15 @@ public class Menu extends JFrame {
 		});
 		button.setBounds(174, 111, 97, 25);
 		contentPane.add(button);
+		
+		JButton button_1 = new JButton("Start");
+		contentPane.add(button_1, BorderLayout.CENTER);
 	}
 	private void start() {
 		// TODO Auto-generated method stub
-		
+		Engine eng = new Engine();
+		eng.Maingame();
+		this.setVisible(false);
 	}
 
 }

@@ -92,6 +92,7 @@ public class BlockManager2 extends BlockManager implements GameObject {
 				//BEGIN: Check neigbours
 				
 				
+				
 				//END: Check neighbours
 				
 				check();
