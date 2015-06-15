@@ -78,6 +78,9 @@ private void mirror() {
 
 	private void successful() {
 		// TODO Auto-generated method stub
+		State.getInstance().Score+=2;
+		State.getInstance().frame.setTitle("Score: " + State.getInstance().Score);
+
 		State.getInstance().engine.remove(this);
 		State.getInstance().canShot=true;
 		State.getInstance().failcount=0;
@@ -88,6 +91,9 @@ private void mirror() {
 	 */
 	private void goout() {
 		// TODO Auto-generated method stub
+		State.getInstance().Score--;
+		State.getInstance().frame.setTitle("Score: " + State.getInstance().Score);
+
 		State.getInstance().engine.remove(this);
 		State.getInstance().canShot=true;
 		State.getInstance().failcount++;

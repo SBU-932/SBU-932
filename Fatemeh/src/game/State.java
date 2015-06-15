@@ -1,9 +1,13 @@
 package game;
 
+import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 import object.GameObj;
 import object.block.Block;
@@ -45,7 +49,8 @@ public class State {
 	public int failcount=0;//counter that count shot that fail
 	public final int limited=5000;//the time that pass add line
 	public double passTime=0;//this count time that pass
-	
+	public int Score=0;
+	public JFrame frame;
 	
 
 }

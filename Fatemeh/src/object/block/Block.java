@@ -125,13 +125,14 @@ public class Block implements GameObj {
 
 					remove.add(check.get(i));
 				}
+				for(int i = 0 ; i< remove.size();i++){
+					State.getInstance().block[remove.get(i).first]
+							[remove.get(i).second]=null;
+				}
+				
+				return true;
 			}
-			
-			
-			
-			return true;
 		}
-		
 		return false;
 	}
 
