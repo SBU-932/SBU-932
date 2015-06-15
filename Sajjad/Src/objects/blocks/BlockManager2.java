@@ -58,6 +58,7 @@ public class BlockManager2 extends BlockManager implements GameObject {
 	/*
 	 * Returns whether or not a bullet has hit the target
 	 */
+	@Deprecated
 	public boolean onTarget(Bullet b) {
 		int x = (int) b.getX();
 		int y = (int) b.getY();
@@ -98,13 +99,13 @@ public class BlockManager2 extends BlockManager implements GameObject {
 
 				// BEGIN: Check neigbours
 
-				for (int ni = 0; ni < tochk.size(); i++) {
+				for (int ni = 0; ni < tochk.size(); ni++) {
 					int I = tochk.get(ni).first, J = tochk.get(ni).second;
 					torm.add(tochk.get(ni));
 
 					try {
 						if (blocks[I + 1][J] != null
-								&& blocks[I + 1][J].equals(tmpC))
+								&& blocks[I + 1][J].getColor().equals(tmpC))
 							if (!has(chked, I + 1, J))
 								tochk.add(new Pair<Integer, Integer>(I + 1, J));
 					} catch (IndexOutOfBoundsException e) {
@@ -112,7 +113,7 @@ public class BlockManager2 extends BlockManager implements GameObject {
 
 					try {
 						if (blocks[I - 1][J] != null
-								&& blocks[I - 1][J].equals(tmpC))
+								&& blocks[I - 1][J].getColor().equals(tmpC))
 							if (!has(chked, I - 1, J))
 								tochk.add(new Pair<Integer, Integer>(I - 1, J));
 					} catch (IndexOutOfBoundsException e) {
@@ -120,7 +121,7 @@ public class BlockManager2 extends BlockManager implements GameObject {
 
 					try {
 						if (blocks[I][J + 1] != null
-								&& blocks[I][J + 1].equals(tmpC))
+								&& blocks[I][J + 1].getColor().equals(tmpC))
 							if (!has(chked, I, J + 1))
 								tochk.add(new Pair<Integer, Integer>(I, J + 1));
 					} catch (IndexOutOfBoundsException e) {
@@ -128,14 +129,18 @@ public class BlockManager2 extends BlockManager implements GameObject {
 
 					try {
 						if (blocks[I][J - 1] != null
-								&& blocks[I][J - 1].equals(tmpC))
+								&& blocks[I][J - 1].getColor().equals(tmpC))
 							if (!has(chked, I, J - 1))
 								tochk.add(new Pair<Integer, Integer>(I, J - 1));
 					} catch (IndexOutOfBoundsException e) {
 					}
 
 					chked.add(tochk.get(ni));
+					System.out.println("size of tochk " + tochk.size()); //Debug:
 				}
+				
+				for(int ni = 0 ; ni < torm.size(); ni++)//Debug: 
+					blocks[torm.get(ni).first][torm.get(ni).second] = null;
 
 				// END: Check neighbours
 
