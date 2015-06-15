@@ -5,10 +5,12 @@ import game.State;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.ArrayList;
 import java.util.Random;
 
 import object.GameObj;
 import object.display.Shot;
+import objects.blocks.Pair;
 
 public class Block implements GameObj {
 	 private Random Rn;
@@ -76,14 +78,12 @@ public class Block implements GameObj {
 				& y < State.getInstance().Nc) {
 			if (State.getInstance().block[x][y] != null&& State.getInstance().
 					block[x][y].getColor().equals(shot.getcolor())) {
-				State.getInstance().block[x][y] = null;
-				System.out.println(x + " " + y);
-				return true;
-			}
-		}
-
-		return false;
-
+				ArrayList <Pair<Integer,Integer>>check = new ArrayList <>();
+				ArrayList<Pair<Integer,Integer>>remove = new ArrayList<>();
+				check.add(new Pair<Integer,Integer>(x,y));
+				for(int i =0 ; i<check.size();i++){
+					int I=check.get(i).first,J=check.get(i).second;
+					remove.add(check.get(i))
 	}
 
 	@Override
