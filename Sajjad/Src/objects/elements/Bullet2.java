@@ -30,7 +30,7 @@ public class Bullet2 implements GameObject {
 		this.speed = speed;
 		this.alpha = Math.toRadians(alpha);
 		this.c = c;
-		modf = r / 2;
+		//modf = r / 2;
 	}
 
 	@Override
@@ -100,6 +100,15 @@ public class Bullet2 implements GameObject {
 
 	public double getY() {
 		return y;
+	}
+
+	public double getSpeed() {
+		return speed;
+	}
+
+	public double getAlpha() {
+		// TODO Auto-generated method stub
+		return alpha;
 	}
 
 }

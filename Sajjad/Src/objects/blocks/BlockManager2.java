@@ -53,7 +53,8 @@ public class BlockManager2 extends BlockManager implements GameObject {
 					 * Assets.bSizeW - 1, Assets.bSizeH - 1);
 					 */
 					g.fillArc(j * Assets.bSizeW + 1, i * Assets.bSizeH + 1,
-							Assets.bSizeW - 1 -15, Assets.bSizeW - 1 -15, 0, 360);
+							Assets.bSizeW - 1 + Assets.boffset, Assets.bSizeW
+									- 1 + Assets.boffset, 0, 360);
 				}
 			}
 		}
@@ -90,6 +91,30 @@ public class BlockManager2 extends BlockManager implements GameObject {
 		int y = (int) b.getY();
 		int j = x / Assets.bSizeW;
 		int i = y / Assets.bSizeH;
+
+		try {
+			if (blocks[i][j] != null) {
+				Type p = null;
+				for (int mi = 0; mi < 5; mi++)
+					if (b.getC().equals(Type.getType(mi).getColor()))
+						p = Type.getType(mi);
+				double alpha = b.getAlpha();
+
+				int deltaX = (int) (Math.cos(alpha) * 2);
+				int deltaY = (int) (Math.sin(alpha) * 2);
+
+				System.out.println("dx,dy= " + deltaX + ' ' + deltaY);// Debug
+
+				if (i - deltaY > blocks.length || j - deltaX > blocks[i].length)
+					Assets.engine.gameOver();
+
+				blocks[i - deltaY][j - deltaX] = p;
+				i -= deltaY;
+				j -= deltaX;
+			}
+		} catch (IndexOutOfBoundsException e) {
+		}
+
 		try {
 			if (blocks[i][j] != null
 					&& blocks[i][j].getColor().equals(b.getC())) {
@@ -143,6 +168,8 @@ public class BlockManager2 extends BlockManager implements GameObject {
 					System.out.println("size of tochk " + tochk.size()); // Debug:
 				}
 
+				if (torm.size() <= 1)
+					return 2;
 				for (int ni = 0; ni < torm.size(); ni++)
 					// Debug:
 					blocks[torm.get(ni).first][torm.get(ni).second] = null;

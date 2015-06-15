@@ -35,6 +35,8 @@ public class Assets {
 	public static int failCount = 0; //If equals 2, it will trigger new line
 	public static double timePassed = 0; // if reach timeLimit will trigger new line
 	public static final double timeLimit = 7000; // time limit of time passed
+
+	public static final int boffset = -15;
 	
 	public static int score = 0;
 	public static JLabel jSore; // Shows the score
