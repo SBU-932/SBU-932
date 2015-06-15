@@ -23,6 +23,7 @@ public class Engine {
             currentTime = updatedTime;
             update();
             draw();
+            start=check();
 	}
 	end();
     }
@@ -49,10 +50,10 @@ public class Engine {
 	/*
 	 * this method run before game begin
 	 */
-
+        Play first = new Play();
 	private void init(){
 		
-            Play first = new Play();
+            
             try
             {
                 first.setVisible(true);
@@ -86,7 +87,7 @@ public class Engine {
 		for(GameObj go: State.instance.remove)
 			State.instance.objects.remove(go);
 		
-		
+		first.update();
 		State.instance.add.clear();
 		State.instance.remove.clear();
 	}
@@ -106,6 +107,12 @@ public class Engine {
 				State.instance.width,BufferedImage.TYPE_INT_RGB);
 		State.instance.g = State.instance.buffered.getGraphics();
 	}
-	
+	public static void remove(GameObj o) {
+		State.instance.remove.add(o);
+	}
+
+        private boolean check() {
+            return true;
+        }
 
 }

@@ -1,5 +1,6 @@
 package GObject.Subs;
 
+import Controler.Engine;
 import Controler.State;
 
 import java.awt.Color;
@@ -48,8 +49,9 @@ public class Shoot implements GameObj {
 		}
 		
 		if(State.instance.blocks.bump(this)){
-			System.out.println("dfghj");
-			
+			System.out.println("BoooM");
+                        successful();
+                        State.instance.score++;
 			
 		}
 	}
@@ -59,7 +61,9 @@ public class Shoot implements GameObj {
 	 * This is called when a Shot is went out of window
 	 */
 	private void goout() {
-		// TODO Auto-generated method stub
+		Engine.remove(this);
+		State.instance.canShoot=true;
+		State.instance.fail_count++;
 	}
 	
 	/*
@@ -71,7 +75,7 @@ public class Shoot implements GameObj {
 	public void draw(Graphics g) {
             // TODO Auto-generated method stub
             g.setColor(color);
-            g.fillOval((int)x, (int)y, r-2, r-2);
+            g.fillOval((int)x, (int)y, r-3, r-3);
 		
 		
 		
@@ -95,6 +99,11 @@ public class Shoot implements GameObj {
         }
         return Color.WHITE;
     }
-
+        private void successful() {
+		// TODO Auto-generated method stub
+		Engine.remove(this);
+		State.instance.canShoot=true;
+		State.instance.fail_count=0;
+	}
 
 }
