@@ -1,5 +1,6 @@
 package object.block;
 
+
 import game.State;
 
 import java.awt.Color;
@@ -22,16 +23,16 @@ public class Block implements GameObj {
 				.getInstance().Nc) - 10;
 
 		// meghdar dehi be array block
-		State.getInstance().block = new boolean[State.getInstance().Nr][State
+		State.getInstance().block = new Colour[State.getInstance().Nr][State
 				.getInstance().Nc];
 
 		Random Rn = new Random();
 
 		for (int i = State.getInstance().Nr - 1; i >= 0; i--) {
-			int rn = Rn.nextInt(State.getInstance().clom);
+			int rn = Rn.nextInt(State.getInstance().Nr-10);
 			rn += 3;
 			for (int j = 0; j < rn; j++) {
-				State.getInstance().block[i][j] = true;
+				State.getInstance().block[i][j] = Colour.getType(Rn.nextInt(5));
 			}
 		}
 	}
@@ -39,66 +40,7 @@ public class Block implements GameObj {
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		check();
-	}
 
-	private void check() {
-		wincheck();
-		
-		boolean[][] isConnected = new boolean[State.getInstance().Nr][State.getInstance().Nc];
-		for (int i = 0; i < isConnected[0].length; i++)
-			isConnected[0][i] = State.getInstance().block[0][i];
-
-		for (int j = 0; j < isConnected[0].length; j++) {
-			for (int i = 0; i < isConnected.length; i++) {
-				if (isConnected[i][j]) {
-					try {
-						if (State.getInstance().block[i + 1][j])
-							isConnected[i + 1][j] = true;
-					} catch (IndexOutOfBoundsException e) {
-
-					}
-
-					try {
-						if (State.getInstance().block[i - 1][j])
-							isConnected[i - 1][j] = true;
-					} catch (IndexOutOfBoundsException e) {
-
-					}
-
-					try {
-						if (State.getInstance().block[i][j + 1])
-							isConnected[i][j + 1] = true;
-					} catch (IndexOutOfBoundsException e) {
-
-					}
-
-					try {
-						if (State.getInstance().block[i][j - 1])
-							isConnected[i][j - 1] = true;
-					} catch (IndexOutOfBoundsException e) {
-
-					}
-				}
-			}
-		}
-
-		State.getInstance().block = isConnected;
-		
-		
-		
-	}
-
-	private void wincheck() {
-		boolean won = true;
-		
-		for(int i = 0; i < State.getInstance().Nr; i++)
-			for(int j = 0; j < State.getInstance().Nc; j++)
-				if(State.getInstance().block[i][j]) won = false;
-		
-		if(won){
-			//TODO: won
-		}
 	}
 
 	/*
@@ -113,11 +55,15 @@ public class Block implements GameObj {
 
 		for (int i = State.getInstance().Nr - 1; i >= 0; i--) {
 			for (int j = State.getInstance().Nc - 1; j >= 0; j--) {
-				if (State.getInstance().block[i][j])
+				if (State.getInstance().block[i][j] != null){
+					g.setColor(State.getInstance().block[i][j].getColor());
 					g.fillRect(i * State.getInstance().row + 1,
 							j * State.getInstance().clom + 1,
 							State.getInstance().row - 1,
 							State.getInstance().clom - 1);
+			
+				}
+					
 			}
 		}
 	}
@@ -128,8 +74,8 @@ public class Block implements GameObj {
 		int y = ((int) shot.getY()) / State.getInstance().clom;
 		if (x >= 0 & y >= 0 & x < State.getInstance().Nr
 				& y < State.getInstance().Nc) {
-			if (State.getInstance().block[x][y]) {
-				State.getInstance().block[x][y] = false;
+			if (State.getInstance().block[x][y] != null) {
+				State.getInstance().block[x][y] = null;
 				System.out.println(x + " " + y);
 				return true;
 			}
@@ -146,17 +92,74 @@ public class Block implements GameObj {
 	}
 
 	public void line() {
-		forloop:for (int i = 0; i < State.getInstance().Nr; i++) {
+		forloop: for (int i = 0; i < State.getInstance().Nr; i++) {
 			int j = 0;
-			while (State.getInstance().block[i][j++]) {
+			while (State.getInstance().block[i][j++] != null) {
 				if (j == State.getInstance().Nc) {
 					State.getInstance().engine.end();
 					break forloop;
 				}
 			}
-			State.getInstance().block[i][j-1]= true;
+			State.getInstance().block[i][j - 1] = null;
 		}
-		State.getInstance().passTime=0;
-		State.getInstance().failcount=0;
+		State.getInstance().passTime = 0;
+		State.getInstance().failcount = 0;
+	}
+
+	public void check() {
+		win();
+
+		boolean[][] isConnected = new boolean[State.getInstance().Nr][State
+				.getInstance().Nc];
+		for (int i = 0; i < isConnected[0].length; i++)
+			isConnected[0][i] = State.getInstance().block[0][i] != null;
+
+		for (int j = 0; j < isConnected[0].length; j++) {
+			for (int i = 0; i < isConnected.length; i++) {
+				if (isConnected[i][j]) {
+					try {
+						if (State.getInstance().block[i + 1][j] != null)
+							isConnected[i + 1][j] = true;
+					} catch (IndexOutOfBoundsException e) {
+
+					}
+
+					try {
+						if (State.getInstance().block[i - 1][j] != null)
+							isConnected[i - 1][j] = true;
+					} catch (IndexOutOfBoundsException e) {
+
+					}
+
+					try {
+						if (State.getInstance().block[i][j + 1] != null)
+							isConnected[i][j + 1] = true;
+					} catch (IndexOutOfBoundsException e) {
+
+					}
+
+					try {
+						if (State.getInstance().block[i][j - 1] != null)
+							isConnected[i][j - 1] = true;
+					} catch (IndexOutOfBoundsException e) {
+
+					}
+				}
+			}
+		}
+		for (int i = 0; i < isConnected.length; i++)
+			for (int j = 0; j < isConnected[i].length; j++)
+				if (!isConnected[i][j])
+					State.getInstance().block[i][j] = null;
+	}
+
+	private void win() {
+		boolean win = true;
+		for (Colour[] boo : State.getInstance().block)
+			for (Colour b : boo)
+				if (b != null)
+					win = false;
+		if (win)
+			State.getInstance().engine.win();
 	}
 }

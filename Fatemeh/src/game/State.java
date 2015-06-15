@@ -36,8 +36,8 @@ public class State {
 	public boolean [][] block;//keep block
 	public int row;//length of block
 	public int clom;//width of block
-	public int Nr=25;//number of blocks in one row
-	public int Nc=25;//number of blocs in one column
+	public int Nr=15;//number of blocks in one row
+	public int Nc=15;//number of blocs in one column
 	public Block blocks;//saving blocks pointer for easy access
 	public Engine engine;
 	public boolean canShot = true; // You can shoot one bullet at a time
