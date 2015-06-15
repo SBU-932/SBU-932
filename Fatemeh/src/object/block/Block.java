@@ -39,7 +39,66 @@ public class Block implements GameObj {
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
+		check();
+	}
 
+	private void check() {
+		wincheck();
+		
+		boolean[][] isConnected = new boolean[State.getInstance().Nr][State.getInstance().Nc];
+		for (int i = 0; i < isConnected[0].length; i++)
+			isConnected[0][i] = State.getInstance().block[0][i];
+
+		for (int j = 0; j < isConnected[0].length; j++) {
+			for (int i = 0; i < isConnected.length; i++) {
+				if (isConnected[i][j]) {
+					try {
+						if (State.getInstance().block[i + 1][j])
+							isConnected[i + 1][j] = true;
+					} catch (IndexOutOfBoundsException e) {
+
+					}
+
+					try {
+						if (State.getInstance().block[i - 1][j])
+							isConnected[i - 1][j] = true;
+					} catch (IndexOutOfBoundsException e) {
+
+					}
+
+					try {
+						if (State.getInstance().block[i][j + 1])
+							isConnected[i][j + 1] = true;
+					} catch (IndexOutOfBoundsException e) {
+
+					}
+
+					try {
+						if (State.getInstance().block[i][j - 1])
+							isConnected[i][j - 1] = true;
+					} catch (IndexOutOfBoundsException e) {
+
+					}
+				}
+			}
+		}
+
+		State.getInstance().block = isConnected;
+		
+		
+		
+	}
+
+	private void wincheck() {
+		boolean won = true;
+		
+		for(int i = 0; i < State.getInstance().Nr; i++)
+			for(int j = 0; j < State.getInstance().Nc; j++)
+				if(State.getInstance().block[i][j]) won = false;
+		
+		if(won){
+			//TODO: won
+		}
 	}
 
 	/*
