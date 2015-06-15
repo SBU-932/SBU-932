@@ -45,6 +45,7 @@ public class BlockManager2 extends BlockManager implements GameObject {
 		}else if(falsed){
 			falsed = false;
 			Assets.canShoot = true;
+			check();
 		}
 		
 		if(toRemove.size()>0 && Assets.timePassed > Assets.timeToRemove){
@@ -191,8 +192,10 @@ public class BlockManager2 extends BlockManager implements GameObject {
 					System.out.println("size of tochk " + tochk.size()); // Debug:
 				}
 
-				if (torm.size() <= 2)
+				if (torm.size() <= 2){
+					check();
 					return 2;
+				}
 				toRemove = torm;
 				Assets.canShoot = false;
 				// END: Check neighbours
@@ -201,12 +204,14 @@ public class BlockManager2 extends BlockManager implements GameObject {
 				return 1;
 			}
 			if (blocks[i][j] != null) {
+				check();
 				return 2;
 			}
 		} catch (IndexOutOfBoundsException e) {
 
 		}
 
+		check();
 		return 0;
 	}
 

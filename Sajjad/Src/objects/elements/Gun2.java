@@ -74,8 +74,10 @@ public class Gun2 implements GameObject {
 				// of
 				// press, so shoot!
 
-				Bullet2 b = new Bullet2(x + modf, y + modf, Assets.bSizeW - 1
-						+ Assets.boffset, 0.5, angl, b1);
+				// Bullet2 b = new Bullet2(x + modf, y + modf, Assets.bSizeW - 1
+				// + Assets.boffset, 0.5, angl, b1);
+				Bullet2 b = new Bullet2(x + modf, y + modf, r, 0.5, angl, b1);
+
 				Assets.engine.add(b);
 
 				b1 = b2;
