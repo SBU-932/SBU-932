@@ -43,7 +43,7 @@ public class BlockManager2 extends BlockManager implements GameObject {
 	public void draw(Graphics g) {
 
 		g.setColor(Color.BLUE);
-		
+
 		for (int i = 0; i < Assets.BIC; i++) {
 			for (int j = 0; j < Assets.BIR; j++) {
 				if (blocks[i][j] != null) {
@@ -64,7 +64,7 @@ public class BlockManager2 extends BlockManager implements GameObject {
 		int j = x / Assets.bSizeW;
 		int i = y / Assets.bSizeH;
 		try {
-			if (blocks[i][j]!=null) {
+			if (blocks[i][j] != null) {
 				blocks[i][j] = null;
 				check();
 				return true;
@@ -86,19 +86,63 @@ public class BlockManager2 extends BlockManager implements GameObject {
 		int j = x / Assets.bSizeW;
 		int i = y / Assets.bSizeH;
 		try {
-			if (blocks[i][j]!=null && blocks[i][j].getColor().equals(b.getC())) {
-				blocks[i][j] = null;
-				
-				//BEGIN: Check neigbours
-				
-				
-				
-				//END: Check neighbours
-				
+			if (blocks[i][j] != null
+					&& blocks[i][j].getColor().equals(b.getC())) {
+				// blocks[i][j] = null;
+				Color tmpC = b.getC();
+				ArrayList<Pair<Integer, Integer>> tochk = new ArrayList<>(), chked = new ArrayList<>();
+
+				ArrayList<Pair<Integer, Integer>> torm = new ArrayList<>();
+
+				tochk.add(new Pair<Integer, Integer>(i, j));
+
+				// BEGIN: Check neigbours
+
+				for (int ni = 0; ni < tochk.size(); i++) {
+					int I = tochk.get(ni).first, J = tochk.get(ni).second;
+					torm.add(tochk.get(ni));
+
+					try {
+						if (blocks[I + 1][J] != null
+								&& blocks[I + 1][J].equals(tmpC))
+							if (!has(chked, I + 1, J))
+								tochk.add(new Pair<Integer, Integer>(I + 1, J));
+					} catch (IndexOutOfBoundsException e) {
+					}
+
+					try {
+						if (blocks[I - 1][J] != null
+								&& blocks[I - 1][J].equals(tmpC))
+							if (!has(chked, I - 1, J))
+								tochk.add(new Pair<Integer, Integer>(I - 1, J));
+					} catch (IndexOutOfBoundsException e) {
+					}
+
+					try {
+						if (blocks[I][J + 1] != null
+								&& blocks[I][J + 1].equals(tmpC))
+							if (!has(chked, I, J + 1))
+								tochk.add(new Pair<Integer, Integer>(I, J + 1));
+					} catch (IndexOutOfBoundsException e) {
+					}
+
+					try {
+						if (blocks[I][J - 1] != null
+								&& blocks[I][J - 1].equals(tmpC))
+							if (!has(chked, I, J - 1))
+								tochk.add(new Pair<Integer, Integer>(I, J - 1));
+					} catch (IndexOutOfBoundsException e) {
+					}
+
+					chked.add(tochk.get(ni));
+				}
+
+				// END: Check neighbours
+
 				check();
 				return 1;
-			} 
-			if (blocks[i][j]!=null){
+			}
+			if (blocks[i][j] != null) {
 				return 2;
 			}
 		} catch (IndexOutOfBoundsException e) {
@@ -106,6 +150,14 @@ public class BlockManager2 extends BlockManager implements GameObject {
 		}
 
 		return 0;
+	}
+
+	private boolean has(ArrayList<Pair<Integer, Integer>> chked, int I, int J) {
+		for (int i = 0; i < chked.size(); i++)
+			if (chked.get(i).first == I)
+				if (chked.get(i).second == J)
+					return true;
+		return false;
 	}
 
 	/*
@@ -116,23 +168,22 @@ public class BlockManager2 extends BlockManager implements GameObject {
 			Random rnd = new Random();
 			for (int i = 0; i < Assets.BIR; i++) {
 				int j = 0;
-				
-				if( blocks[Assets.BIC -1][i] != null) Assets.engine.gameOver();
-				
-				j = Assets.BIC-1;
-				
-				for(int k = j ; k > 0; k --){
-					blocks[k][i] = blocks[k-1][i];
+
+				if (blocks[Assets.BIC - 1][i] != null)
+					Assets.engine.gameOver();
+
+				j = Assets.BIC - 1;
+
+				for (int k = j; k > 0; k--) {
+					blocks[k][i] = blocks[k - 1][i];
 				}
-				
-				
+
 				blocks[0][i] = Type.getType(rnd.nextInt(5));
 			}
 		} catch (ArrayIndexOutOfBoundsException e) {
 			Assets.engine.gameOver();
 		}
 
-		// System.out.println("Added line"); // Debug:
 		Assets.failCount = 0;
 		Assets.timePassed = 0;
 	}
@@ -145,34 +196,34 @@ public class BlockManager2 extends BlockManager implements GameObject {
 
 		boolean[][] isConnected = new boolean[Assets.BIC][Assets.BIR];
 		for (int i = 0; i < isConnected[0].length; i++)
-			isConnected[0][i] = blocks[0][i]!=null;
+			isConnected[0][i] = blocks[0][i] != null;
 
 		for (int j = 0; j < isConnected[0].length; j++) {
 			for (int i = 0; i < isConnected.length; i++) {
 				if (isConnected[i][j]) {
 					try {
-						if (blocks[i+1][j]!=null)
+						if (blocks[i + 1][j] != null)
 							isConnected[i + 1][j] = true;
 					} catch (IndexOutOfBoundsException e) {
 
 					}
 
 					try {
-						if (blocks[i-1][j]!=null)
+						if (blocks[i - 1][j] != null)
 							isConnected[i - 1][j] = true;
 					} catch (IndexOutOfBoundsException e) {
 
 					}
 
 					try {
-						if (blocks[i][j+1]!=null)
+						if (blocks[i][j + 1] != null)
 							isConnected[i][j + 1] = true;
 					} catch (IndexOutOfBoundsException e) {
 
 					}
 
 					try {
-						if (blocks[i][j-1]!=null)
+						if (blocks[i][j - 1] != null)
 							isConnected[i][j - 1] = true;
 					} catch (IndexOutOfBoundsException e) {
 
