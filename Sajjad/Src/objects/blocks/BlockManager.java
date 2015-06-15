@@ -8,6 +8,7 @@ import engine.Assets;
 import objects.GameObject;
 import objects.elements.Bullet;
 import objects.elements.Bullet2;
+import objects.elements.Bullet3;
 
 public class BlockManager implements GameObject {
 

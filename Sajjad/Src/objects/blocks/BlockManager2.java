@@ -53,6 +53,7 @@ public class BlockManager2 extends BlockManager implements GameObject {
 			blocks[toRemove.get(0).first][toRemove.get(0).second]=null;
 			toRemove.remove(0);
 		}
+		
 	}
 
 	@Override
@@ -64,8 +65,13 @@ public class BlockManager2 extends BlockManager implements GameObject {
 			for (int j = 0; j < Assets.BIR; j++) {
 				if (blocks[i][j] != null) {
 					g.setColor(blocks[i][j].getColor());
-					g.fillRect(j * Assets.bSizeW + 1, i * Assets.bSizeH + 1,
-							Assets.bSizeW - 1, Assets.bSizeH - 1);
+					/*
+					 * g.fillRect(j * Assets.bSizeW + 1, i * Assets.bSizeH + 1,
+					 * Assets.bSizeW - 1, Assets.bSizeH - 1);
+					 */
+					g.fillArc(j * Assets.bSizeW + 1, i * Assets.bSizeH + 1,
+							Assets.bSizeW - 1 + Assets.boffset, Assets.bSizeW
+									- 1 + Assets.boffset, 0, 360);
 				}
 			}
 		}
@@ -144,7 +150,7 @@ public class BlockManager2 extends BlockManager implements GameObject {
 
 				tochk.add(new Pair<Integer, Integer>(i, j));
 
-				// BEGIN: Check neigbours
+				// BEGIN: Check neighbours
 
 				for (int ni = 0; ni < tochk.size(); ni++) {
 					int I = tochk.get(ni).first, J = tochk.get(ni).second;
@@ -185,7 +191,6 @@ public class BlockManager2 extends BlockManager implements GameObject {
 					chked.add(tochk.get(ni));
 					System.out.println("size of tochk " + tochk.size()); // Debug:
 				}
-
 
 				if (torm.size() <= 2){
 					check();
