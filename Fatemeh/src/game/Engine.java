@@ -45,7 +45,7 @@ public class Engine {
 	
 	private void draw() {
 		//set background
-		State.getInstance().g.setColor(Color.PINK);
+		State.getInstance().g.setColor(Color.BLACK);
 		State.getInstance().g.fillRect(0, 0,State.getInstance().length
 				,State.getInstance().width);
 		

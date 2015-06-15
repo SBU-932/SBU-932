@@ -17,7 +17,7 @@ import object.GameObj;
 public class Fire implements GameObj {
 
 	int x, y, l, r;// Position, radius and length of weapon
-	boolean shoot = true; // If it has shot
+	boolean shoot = true; // shot one time in per tap button
 	double theta,//degree of gun
 	speed = 0.005;//speed of gun moving
 	
@@ -58,7 +58,6 @@ public class Fire implements GameObj {
 			}
 		} else {
 			shoot = true;
-			State.getInstance().canShot = true;
 		}
 		
 		if(theta>0){
