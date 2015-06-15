@@ -80,7 +80,7 @@ public class Shot implements GameObj {
 	@Override
 	public void draw(Graphics g) {
 		// TODO Auto-generated method stub
-		g.setColor(Color.DARK_GRAY);
+		g.setColor(Color.WHITE);
 		g.fillRect((int)x, (int)y, r, r);
 		
 		
