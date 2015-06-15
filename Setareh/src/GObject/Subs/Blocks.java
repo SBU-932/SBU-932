@@ -44,15 +44,7 @@ public class Blocks implements GameObj {
             }
         
         }
-//	Random Rn = new Random();
-//
-//	for (int i = State.instance.column_count - 1 ; i >= 0 ; i--) {
-//            int rn = Rn.nextInt(State.instance.block_width-5);
-////            rn += 3;
-//            for (int j = 0; j < rn; j++) {
-//		State.instance.block[i][j] = true;
-//            }
-//	}
+
         //choose random color for each block 
         for(int i = 0 ; i < State.instance.column_count ; i++){
             for(int j = 0 ; j < State.instance.row_count ; j++){
