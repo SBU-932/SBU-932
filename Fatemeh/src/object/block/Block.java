@@ -87,15 +87,15 @@ public class Block implements GameObj {
 	}
 
 	public void line() {
-		for (int i = 0; i < State.getInstance().Nr; i++) {
+		forloop:for (int i = 0; i < State.getInstance().Nr; i++) {
 			int j = 0;
 			while (State.getInstance().block[i][j++]) {
-				if (j - 1 == State.getInstance().Nc) {
+				if (j == State.getInstance().Nc) {
 					State.getInstance().engine.end();
-				} else {
-					State.getInstance().block[i][j-1] = true;
+					break forloop;
 				}
 			}
+			State.getInstance().block[i][j-1]= true;
 		}
 		State.getInstance().passTime=0;
 		State.getInstance().failcount=0;

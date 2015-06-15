@@ -42,7 +42,7 @@ public class State {
 	public Engine engine;
 	public boolean canShot = true; // You can shoot one bullet at a time
 	public int failcount=0;//counter that count shot that fail
-	public final int limited=8000;//the time that pass add line
+	public final int limited=5000;//the time that pass add line
 	public double passTime=0;//this count time that pass
 	
 	
