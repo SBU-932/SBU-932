@@ -55,7 +55,29 @@ public class Blocks implements GameObj {
 
     @Override
     public void update() {
-		// TODO Auto-generated method stub
+	for(int j = 1 ; j < State.instance.row_count ; j++){
+            for(int i = 0 ; i < State.instance.column_count ; i++){
+                if(State.instance.block[i][j]){
+                    if( i == 0 ){
+                    if(!(State.instance.block[i][j-1] || State.instance.block[i+1][j])){
+                        State.instance.block[i][j]=false;
+                        State.instance.score++;
+                    }
+                }
+                else if(i == State.instance.column_count -1){
+                    if(!(State.instance.block[i][j-1] || State.instance.block[i-1][j])){
+                        State.instance.block[i][j]=false;
+                        State.instance.score++;
+                    }
+                }
+                else
+                    if(!(State.instance.block[i][j-1] || State.instance.block[i-1][j] || State.instance.block[i+1][j])){
+                        State.instance.block[i][j]=false;
+                        State.instance.score++;
+                    }
+            }
+            }
+        }	
     }
 
 	/*

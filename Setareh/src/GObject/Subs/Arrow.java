@@ -46,16 +46,16 @@ public class Arrow implements GameObj {
             theta += speed * State.instance.delta;
 	}
 		
-	//shoot
+
 	if (State.instance.button[2]) {
-	//if space button push fire
-	if (shoot) {
-            shoot = false;
-            // TODO: Fire kn
-            Shoot ball = new Shoot(State.instance.radius , x + r / 2, y + r / 2, theta);
-            State.instance.add.add(ball);
-            System.out.println("Shoot!!");
-        }
+	//if space button push shoot
+            if ( shoot && State.instance.canShoot ) {
+                shoot = false;
+                State.instance.canShoot = false;
+                Shoot ball = new Shoot(State.instance.radius , x + r / 2, y + r / 2, theta);
+                State.instance.add.add(ball);
+                System.out.println("Shoot!!");
+            }
 	}
         else {
             shoot = true;
