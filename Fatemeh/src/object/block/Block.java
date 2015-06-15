@@ -20,7 +20,7 @@ public class Block implements GameObj {
 		State.getInstance().row = (State.getInstance().length / State
 				.getInstance().Nr);
 		State.getInstance().clom = (State.getInstance().width / State
-				.getInstance().Nc) - 10;
+				.getInstance().Nc)-5;
 
 		// meghdar dehi be array block
 		State.getInstance().block = new Colour[State.getInstance().Nr][State
@@ -40,7 +40,7 @@ public class Block implements GameObj {
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-
+		check();
 	}
 
 	/*
@@ -74,7 +74,8 @@ public class Block implements GameObj {
 		int y = ((int) shot.getY()) / State.getInstance().clom;
 		if (x >= 0 & y >= 0 & x < State.getInstance().Nr
 				& y < State.getInstance().Nc) {
-			if (State.getInstance().block[x][y] != null) {
+			if (State.getInstance().block[x][y] != null&& State.getInstance().
+					block[x][y].getColor().equals(shot.getcolor())) {
 				State.getInstance().block[x][y] = null;
 				System.out.println(x + " " + y);
 				return true;

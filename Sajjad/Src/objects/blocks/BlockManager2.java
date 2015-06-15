@@ -136,10 +136,11 @@ public class BlockManager2 extends BlockManager implements GameObject {
 					}
 
 					chked.add(tochk.get(ni));
-					System.out.println("size of tochk " + tochk.size()); //Debug:
+					System.out.println("size of tochk " + tochk.size()); // Debug:
 				}
-				
-				for(int ni = 0 ; ni < torm.size(); ni++)//Debug: 
+
+				for (int ni = 0; ni < torm.size(); ni++)
+					// Debug:
 					blocks[torm.get(ni).first][torm.get(ni).second] = null;
 
 				// END: Check neighbours
