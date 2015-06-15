@@ -9,7 +9,6 @@ package State;
 
 import GObjects.subs.Arrow;
 import GObjects.GameObject;
-import game.Play;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;

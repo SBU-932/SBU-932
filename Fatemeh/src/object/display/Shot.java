@@ -48,17 +48,28 @@ public class Shot implements GameObj {
 		
 		if(State.getInstance().blocks.bump(this)){
 			System.out.println("dfghj");
+			successful();
 			
 			
 		}
 	}
 	
 
+	private void successful() {
+		// TODO Auto-generated method stub
+		State.getInstance().engine.remove(this);
+		State.getInstance().canShot=true;
+		State.getInstance().failcount=0;
+	}
+
 	/*
 	 * This is called when a Shot is went out of window
 	 */
 	private void goout() {
 		// TODO Auto-generated method stub
+		State.getInstance().engine.remove(this);
+		State.getInstance().canShot=true;
+		State.getInstance().failcount++;
 	}
 	
 	/*

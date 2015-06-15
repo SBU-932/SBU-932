@@ -29,7 +29,7 @@ public class State {
 	public Graphics g;// The graphic for drawing on game
 	public  int length=800;//length of game screen
 	public int width=600;//width of game screen
-	public double delta;
+	public double delta=0;//time
 	public ArrayList<GameObj>objects = new ArrayList<GameObj>();
 	public ArrayList<GameObj>add = new ArrayList<GameObj>();
 	public ArrayList<GameObj>remove = new ArrayList<GameObj>();
@@ -39,9 +39,11 @@ public class State {
 	public int Nr=25;//number of blocks in one row
 	public int Nc=25;//number of blocs in one column
 	public Block blocks;//saving blocks pointer for easy access
-
-
-	
+	public Engine engine;
+	public boolean canShot = true; // You can shoot one bullet at a time
+	public int failcount=0;//counter that count shot that fail
+	public final int limited=8000;//the time that pass add line
+	public double passTime=0;//this count time that pass
 	
 	
 

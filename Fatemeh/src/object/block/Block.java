@@ -62,19 +62,20 @@ public class Block implements GameObj {
 			}
 		}
 	}
-	
+
 	public boolean bump(Shot shot) {
-		
+
 		int x = ((int) shot.getX()) / State.getInstance().row;
 		int y = ((int) shot.getY()) / State.getInstance().clom;
-		if(x>=0&y>=0&x<State.getInstance().Nr&y<State.getInstance().Nc){
+		if (x >= 0 & y >= 0 & x < State.getInstance().Nr
+				& y < State.getInstance().Nc) {
 			if (State.getInstance().block[x][y]) {
 				State.getInstance().block[x][y] = false;
-				System.out.println(x+ " "+ y);
+				System.out.println(x + " " + y);
 				return true;
 			}
 		}
-		
+
 		return false;
 
 	}
@@ -85,4 +86,16 @@ public class Block implements GameObj {
 
 	}
 
+	public void line() {
+		for (int i = 0; i < State.getInstance().Nr; i++) {
+			int j = 0;
+			while (State.getInstance().block[j++][i]) {
+				if (j - 1 == State.getInstance().Nc) {
+					State.getInstance().engine.end();
+				} else {
+					State.getInstance().block[j - 1][i] = true;
+				}
+			}
+		}
+	}
 }

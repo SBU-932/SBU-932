@@ -48,15 +48,24 @@ public class Fire implements GameObj {
 		//shoot
 		if (State.getInstance().button[2]) {
 			//if space button push fire
-			if (shoot) {
+			if (shoot&&State.getInstance().canShot) {
 				shoot = false;
 				// TODO: Fire kn
 				Shot Shot = new Shot(5, x + r / 2, y + r / 2, theta);
 				State.getInstance().add.add(Shot);
 				System.out.println("Shooooooooot");
+				State.getInstance().canShot =false;
 			}
 		} else {
 			shoot = true;
+			State.getInstance().canShot = true;
+		}
+		
+		if(theta>0){
+			theta=0;
+		}
+		if(theta<-180){
+			theta =-180;
 		}
 	}
 	

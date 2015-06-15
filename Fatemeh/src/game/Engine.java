@@ -3,6 +3,8 @@ package game;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 
+import javax.swing.JOptionPane;
+
 import object.GameObj;
 import object.block.Block;
 import object.display.Fire;
@@ -12,6 +14,11 @@ public class Engine {
 	
 	public boolean start = true;//If the game is running
 	
+	
+	public Engine() {
+		// TODO Auto-generated constructor stub
+		State.getInstance().engine=this;
+	}
 	
 	public void Maingame(){
 		init();
@@ -71,6 +78,12 @@ public class Engine {
 	 */
 	private void update(){
 		//TODO
+		State.getInstance().passTime += State.getInstance().delta;
+		
+		if(State.getInstance().failcount >=2 || State.getInstance().passTime >=
+				State.getInstance().limited){
+			State.getInstance().blocks.line();
+		}
 		for(GameObj go: State.getInstance().objects)
 			go.update();
 		
@@ -86,11 +99,16 @@ public class Engine {
 		State.getInstance().remove.clear();
 	}
 	
+	public void remove(GameObj o) {
+		State.getInstance().remove.add(o);
+	}
+	
 	/*
 	 * this method is for end of game
 	 */
-	private void end(){
+	public void end(){
 		//TODO
+		JOptionPane.showMessageDialog(null, "Game Over");
 	}
 	
 	/*
