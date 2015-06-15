@@ -119,6 +119,11 @@ public class Engine {
 				State.getInstance().width,BufferedImage.TYPE_INT_RGB);
 		State.getInstance().g = State.getInstance().buffered.getGraphics();
 	}
+
+	public void win() {
+		// TODO Auto-generated method stub
+		JOptionPane.showMessageDialog(null, "You win!");
+	}
 	
 
 }

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import object.GameObj;
 import object.block.Block;
+import object.block.Colour;
 
 public class State {
 	
@@ -33,7 +34,7 @@ public class State {
 	public ArrayList<GameObj>objects = new ArrayList<GameObj>();
 	public ArrayList<GameObj>add = new ArrayList<GameObj>();
 	public ArrayList<GameObj>remove = new ArrayList<GameObj>();
-	public boolean [][] block;//keep block
+	public Colour [][] block;//keep block
 	public int row;//length of block
 	public int clom;//width of block
 	public int Nr=15;//number of blocks in one row
