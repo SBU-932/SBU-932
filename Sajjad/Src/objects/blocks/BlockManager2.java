@@ -38,9 +38,6 @@ public class BlockManager2 extends BlockManager implements GameObject {
 
 	@Override
 	public void update() {
-<<<<<<< HEAD
-		// TODO: check for
-=======
 		// TODO: check for fall
 		if(toRemove.size()>0){
 			Assets.canShoot = false;
@@ -56,8 +53,6 @@ public class BlockManager2 extends BlockManager implements GameObject {
 			blocks[toRemove.get(0).first][toRemove.get(0).second]=null;
 			toRemove.remove(0);
 		}
-		
->>>>>>> 63e2d745f312f515afd3f3229e4108c07a677239
 	}
 
 	@Override
@@ -107,8 +102,6 @@ public class BlockManager2 extends BlockManager implements GameObject {
 		int y = (int) b.getY();
 		int j = x / Assets.bSizeW;
 		int i = y / Assets.bSizeH;
-<<<<<<< HEAD
-=======
 
 		try {
 			if (blocks[i][j] != null) {
@@ -140,7 +133,6 @@ public class BlockManager2 extends BlockManager implements GameObject {
 		} catch (IndexOutOfBoundsException e) {
 		}
 
->>>>>>> 63e2d745f312f515afd3f3229e4108c07a677239
 		try {
 			if (blocks[i][j] != null
 					&& blocks[i][j].getColor().equals(b.getC())) {
@@ -194,19 +186,13 @@ public class BlockManager2 extends BlockManager implements GameObject {
 					System.out.println("size of tochk " + tochk.size()); // Debug:
 				}
 
-<<<<<<< HEAD
-				for (int ni = 0; ni < torm.size(); ni++)
-					// Debug:
-					blocks[torm.get(ni).first][torm.get(ni).second] = null;
 
-=======
 				if (torm.size() <= 2){
 					check();
 					return 2;
 				}
 				toRemove = torm;
 				Assets.canShoot = false;
->>>>>>> 63e2d745f312f515afd3f3229e4108c07a677239
 				// END: Check neighbours
 
 				check();
