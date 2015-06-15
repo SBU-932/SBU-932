@@ -13,7 +13,7 @@ public class Shoot implements GameObj {
 	double x,y;//position
 	double alpha;//degree of drop
 	double speed = 1;//speed of drop
-	Color color;
+	Color color;//ball color
 	/*
 	 * fixing every thing
 	 */
@@ -23,7 +23,7 @@ public class Shoot implements GameObj {
             this.x=x;
             this.y=y;
             this.alpha=alpha;
-            color=set_rand_color();
+            color=set_rand_color();//select color for our ball 
 	}
 	
 	public double getX() {
@@ -76,6 +76,7 @@ public class Shoot implements GameObj {
 		
 		
 	}
+        //this method give us random color between our 5 colors
         private  Color set_rand_color(){
         
         Random rand = new Random();

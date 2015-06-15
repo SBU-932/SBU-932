@@ -15,6 +15,7 @@ import static jdk.nashorn.internal.objects.NativeMath.random;
 
 public class Blocks implements GameObj {
 
+    //keep each block color
     Color[][] color= new Color[State.instance.column_count][State.instance.row_count];
     public Blocks() {
         // TODO Auto-generated constructor stub
@@ -26,17 +27,25 @@ public class Blocks implements GameObj {
         State.instance.radius =(State.instance.length / State.instance.column_count)-2;
         // meghdar dehi be array block
         State.instance.block = new boolean[State.instance.column_count][State.instance.row_count];
-
-	Random Rn = new Random();
-
-	for (int i = State.instance.column_count - 1 ; i >= 0 ; i--) {
-            int rn = Rn.nextInt(State.instance.block_width-5);
-//            rn += 3;
-            for (int j = 0; j < rn; j++) {
-		State.instance.block[i][j] = true;
-            }
-	}
         
+        Random rand = new Random();
+
+        for(int j=0  ;  j < State.instance.column_count ; j++){
+            for(int i=0 ; i< State.instance.row_count ; i++){
+                if(j<3){
+                    State.instance.block[i][j]=true;
+                }
+                else{
+                    int randomNum = rand.nextInt(State.instance.column_count) ;
+                    if(State.instance.block[randomNum][j-1]){
+                        State.instance.block[randomNum][j]=true;
+                    }
+                }
+            }
+        
+        }
+
+        //choose random color for each block 
         for(int i = 0 ; i < State.instance.column_count ; i++){
             for(int j = 0 ; j < State.instance.row_count ; j++){
                  color[i][j]=set_rand_color();
@@ -79,6 +88,7 @@ public class Blocks implements GameObj {
 	}
 	return false;
     }
+    //give random color
     private  Color set_rand_color(){
         
         Random rand = new Random();

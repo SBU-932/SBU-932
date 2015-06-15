@@ -103,7 +103,7 @@ public class Play extends javax.swing.JFrame {
     }//GEN-LAST:event_restart_jButtonActionPerformed
 
     private void quit_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quit_jButtonActionPerformed
-        this.setVisible(false);//dorostesh kon!!
+        this.dispose();//dorostesh kon!!
     }//GEN-LAST:event_quit_jButtonActionPerformed
 
     /**

@@ -70,7 +70,7 @@ public class Arrow implements GameObj {
     @Override
     public void draw(Graphics g) {
 		// TODO Auto-generated method stub
-	g.setColor(Color.LIGHT_GRAY);
+	g.setColor(Color.PINK);
 	g.fillArc(x, y, r+5, r+5, 0, 180);
 
 	g.setColor(Color.DARK_GRAY);
