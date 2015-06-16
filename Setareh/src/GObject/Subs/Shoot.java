@@ -15,16 +15,19 @@ public class Shoot implements GameObj {
 	double alpha;//degree of drop
 	double speed = 1;//speed of drop
 	Color color;//ball color
-	/*
+        Random rand = new Random();
+	int counter=0;//mirror counter
+	int max_mirror = 2;
+        /*
 	 * fixing every thing
 	 */
-	public Shoot(int r,double x,double y,double alpha) {
+	public Shoot(int r,double x,double y,double alpha , Color color) {
             // TODO Auto-generated constructor stub
             this.r =r;
             this.x=x;
             this.y=y;
             this.alpha=alpha;
-            color=set_rand_color();//select color for our ball 
+            this.color=color;//select color for our ball 
 	}
 	
 	public double getX() {
@@ -44,14 +47,17 @@ public class Shoot implements GameObj {
 		y+=speed*Math.sin(alpha)*State.instance.delta;
 		
 		//check position of Shot
-		if( x <0 || y<0 || x> State.instance.length || y> State.instance.width){
+		if( y<0 || y> State.instance.width){
 			goout();
+		}
+		if(x <=0|| x>=State.instance.length){
+			mirror();
 		}
 		
 		if(State.instance.blocks.bump(this)){
 			System.out.println("BoooM");
                         successful();
-                        State.instance.score++;
+                        State.instance.score+=2;
 			
 		}
 	}
@@ -105,5 +111,13 @@ public class Shoot implements GameObj {
 		State.instance.canShoot=true;
 		State.instance.fail_count=0;
 	}
-
+        private void mirror() {
+		// TODO Auto-generated method stub
+		counter ++;
+		alpha = Math.PI- alpha;
+		System.out.println(alpha);
+		if(counter >max_mirror){
+			goout();
+		}
+	}
 }
