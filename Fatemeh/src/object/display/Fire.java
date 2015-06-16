@@ -71,6 +71,7 @@ public class Fire implements GameObj {
 				c2=RnColor();
 				System.out.println("Shooooooooot");
 				State.getInstance().canShot =false;
+				System.out.println("Space " + State.getInstance().add.size());
 			}
 		} else {
 			shoot = true;

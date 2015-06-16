@@ -137,23 +137,22 @@ public class Engine {
 		// TODO Auto-generated method stub
 		start = false;
 
-		Engine tmp = new Engine();
 		Thread t = new Thread(new Runnable() {
 
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				synchronized (State.getInstance()) {
-					try {
-						State.getInstance().wait();
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-				tmp.Maingame();
-				State.getInstance().Panel.requestFocus();
+				// synchronized (State.getInstance()) {
+
+				while (State.getInstance().engine.start)
+					;
 				State.getInstance().objects.clear();
+				State.getInstance().canShot = true;
+				System.out.println("Here");
+
+				Engine tmp = new Engine();
+
+				tmp.Maingame();
 			}
 
 		});

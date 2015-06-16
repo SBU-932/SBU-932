@@ -38,6 +38,7 @@ public class Panel extends JPanel {
 	private void setupBotton() {
 		// TODO Auto-generated method stub
 		JButton button = new JButton("Restart");
+		button.setFocusable(false);
 		JButton button1 = new JButton("Quit");
 		button.setLocation(868, 462);
 		button.setSize(89, 23);
@@ -144,5 +145,8 @@ public class Panel extends JPanel {
 	private void Restart() {
 		// TODO Auto-generated method stub
 		State.getInstance().engine.reset();
+		//this.setupInputs();
+		//requestFocusInWindow();
+		//requestFocus();
 	}
 }
