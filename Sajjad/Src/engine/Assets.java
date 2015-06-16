@@ -38,10 +38,13 @@ public class Assets {
 
 	public static final int boffset = -15;
 
-	public static final double timeToRemove = 500;
+	public static final double timeToRemove = 200;
 	
 	public static int score = 0;
 	public static JLabel jSore; // Shows the score
 
 	public static GameWin window;
+
+	public static boolean[] turn;
+	public static int[] scores;
 }
