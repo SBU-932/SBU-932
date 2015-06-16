@@ -1,4 +1,4 @@
-package GObject.Subs;
+package GObject.Blocks;
 
 import Controler.State;
 
@@ -7,6 +7,7 @@ import java.awt.Graphics;
 import java.util.Random;
 
 import GObject.GameObj;
+import GObject.Subs.Shoot;
 import GObject.Subs.Shoot;
 import static com.sun.org.apache.xalan.internal.lib.ExsltMath.random;
 import static java.lang.Math.random;
@@ -61,19 +62,19 @@ public class Blocks implements GameObj {
                     if( i == 0 ){
                     if(!(State.instance.block[i][j-1] || State.instance.block[i+1][j])){
                         State.instance.block[i][j]=false;
-                        State.instance.score++;
+                        State.instance.score+=2;
                     }
                 }
                 else if(i == State.instance.column_count -1){
                     if(!(State.instance.block[i][j-1] || State.instance.block[i-1][j])){
                         State.instance.block[i][j]=false;
-                        State.instance.score++;
+                        State.instance.score+=2;
                     }
                 }
                 else
                     if(!(State.instance.block[i][j-1] || State.instance.block[i-1][j] || State.instance.block[i+1][j])){
                         State.instance.block[i][j]=false;
-                        State.instance.score++;
+                        State.instance.score+=2;
                     }
             }
             }

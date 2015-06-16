@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 
 import GObject.GameObj;
-import GObject.Subs.Blocks;
+import GObject.Blocks.Blocks;
 import GObject.Subs.Arrow;
 import GameMain.Play;
 

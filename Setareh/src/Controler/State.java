@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import GObject.GameObj;
-import GObject.Subs.Blocks;
+import GObject.Blocks.Blocks;
 
 public class State {
 	
